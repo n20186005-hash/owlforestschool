@@ -1,0 +1,21 @@
+---
+import OwlMark from './OwlMark.astro';
+---
+<header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#14251d]/85 text-white backdrop-blur-xl">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
+    <a class="flex items-center gap-2.5 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d6aa55]" href="/" aria-label="回到首頁">
+      <OwlMark class="h-9 w-9 text-[#e2bd72]" />
+      <span class="font-semibold tracking-[0.08em]">奧爾森林學堂</span>
+    </a>
+    <nav class="hidden items-center gap-7 text-sm text-white/80 md:flex" aria-label="主要導覽">
+      <a class="transition hover:text-white" href="#highlights">森林亮點</a>
+      <a class="transition hover:text-white" href="#gallery">實景照片</a>
+      <a class="transition hover:text-white" href="#routes">遊玩路線</a>
+      <a class="transition hover:text-white" href="#transport">交通資訊</a>
+      <a class="transition hover:text-white" href="#faq">常見問題</a>
+    </nav>
+    <a class="rounded-full bg-[#e2bd72] px-4 py-2 text-sm font-semibold text-[#1f3228] transition hover:bg-[#f0d28e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#status">
+      行前資訊
+    </a>
+  </div>
+</header>

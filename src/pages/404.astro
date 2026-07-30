@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import OwlMark from '@/components/OwlMark.astro';
+---
+<BaseLayout title="找不到頁面｜奧爾森林學堂" description="找不到你要瀏覽的頁面。" noindex={true} canonicalPath="/404">
+  <main class="flex min-h-screen items-center justify-center bg-[#173227] px-5 text-white">
+    <div class="max-w-lg text-center">
+      <OwlMark class="mx-auto h-24 w-24 text-[#e2bd72]" />
+      <p class="mt-8 text-sm tracking-[0.3em] text-white/45">404・LOST IN THE FOREST</p>
+      <h1 class="mt-4 text-4xl font-semibold">這條森林小徑走錯了</h1>
+      <p class="mt-5 leading-8 text-white/65">回到首頁，重新查看奧爾森林學堂的行前資訊與親子路線。</p>
+      <a class="mt-8 inline-flex rounded-full bg-[#e2bd72] px-6 py-3 font-semibold text-[#173227]" href="/">回到首頁</a>
+    </div>
+  </main>
+</BaseLayout>

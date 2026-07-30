@@ -1,0 +1,548 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SiteHeader from '@/components/SiteHeader.astro';
+import SiteFooter from '@/components/SiteFooter.astro';
+import OwlMark from '@/components/OwlMark.astro';
+import { checklist, faqs, galleryPhotos, highlights, nearbyFood, quickFacts, routes, site } from '@/data/site';
+
+const touristAttractionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristAttraction',
+  name: site.name,
+  description: site.description,
+  url: site.url,
+  isAccessibleForFree: true,
+  image: [
+    `${site.url}/images/owl-forest-hero.jpg`,
+    `${site.url}/images/owl-forest-sign.jpg`,
+    `${site.url}/images/owl-forest-treehouse.jpg`,
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '公園路42號',
+    addressLocality: '桃園區',
+    addressRegion: '桃園市',
+    postalCode: '330',
+    addressCountry: 'TW',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: site.coordinates.lat,
+    longitude: site.coordinates.lng,
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+<BaseLayout>
+  <script type="application/ld+json" set:html={JSON.stringify(touristAttractionSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <div id="top"></div>
+  <SiteHeader />
+
+  <main>
+    <section class="relative isolate min-h-[760px] overflow-hidden bg-[#14261d] pt-16 text-white">
+      <img
+        src="/images/owl-forest-hero.jpg"
+        alt="奧爾森林學堂的樹屋、空中步道與林間草地"
+        width="1024"
+        height="683"
+        fetchpriority="high"
+        class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+      />
+      <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(11,30,22,.94)_0%,rgba(11,30,22,.76)_47%,rgba(11,30,22,.2)_100%)]"></div>
+      <div class="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgba(11,30,22,.88)_0%,transparent_42%)]"></div>
+      <div class="leaf-grid absolute inset-0 -z-10 opacity-60"></div>
+
+      <div class="mx-auto grid min-h-[700px] max-w-7xl items-end gap-12 px-5 pb-16 pt-24 md:items-center md:pb-20 lg:grid-cols-[1.1fr_.9fr] lg:px-8">
+        <div class="max-w-3xl">
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/15 px-4 py-2 text-sm text-white/80 backdrop-blur">
+            <span class="h-2 w-2 rounded-full bg-[#e2bd72]"></span>
+            桃園虎頭山・免費親子森林景點
+          </div>
+          <p class="text-sm font-semibold tracking-[0.32em] text-[#e2bd72]">OWL FOREST SCHOOL</p>
+          <h1 class="mt-5 text-5xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">奧爾森林學堂</h1>
+          <p class="mt-6 max-w-2xl text-xl leading-9 text-white/80 sm:text-2xl">
+            穿梭樹梢，走進貓頭鷹的森林教室。
+          </p>
+          <p class="mt-6 max-w-xl leading-8 text-white/65">
+            樹屋、空中步道與林下探索，適合安排一場輕鬆的桃園親子半日遊。
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a class="rounded-full bg-[#e2bd72] px-6 py-3.5 font-semibold text-[#173227] transition hover:-translate-y-0.5 hover:bg-[#f1d28b] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#status">查看行前資訊</a>
+            <a class="rounded-full border border-white/30 bg-white/5 px-6 py-3.5 font-semibold text-white backdrop-blur transition hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href={site.mapUrl} target="_blank" rel="noopener noreferrer">開啟導航 ↗</a>
+          </div>
+        </div>
+
+        <aside class="max-w-md rounded-[2rem] border border-white/15 bg-[#13271e]/70 p-6 backdrop-blur-xl lg:justify-self-end" aria-label="快速資訊">
+          <div class="flex items-start gap-4">
+            <OwlMark class="h-12 w-12 shrink-0 text-[#e2bd72]" />
+            <div>
+              <p class="text-sm text-white/55">今天出發前先知道</p>
+              <p class="mt-1 text-lg font-semibold">園區目前分區施工中</p>
+            </div>
+          </div>
+          <div class="mt-6 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-2xl bg-white/7 p-4"><span class="block text-white/50">門票</span><strong class="mt-1 block">免費</strong></div>
+            <div class="rounded-2xl bg-white/7 p-4"><span class="block text-white/50">停留</span><strong class="mt-1 block">1～2 小時</strong></div>
+            <div class="rounded-2xl bg-white/7 p-4"><span class="block text-white/50">親子</span><strong class="mt-1 block">幼兒～國小</strong></div>
+            <div class="rounded-2xl bg-white/7 p-4"><span class="block text-white/50">推車</span><strong class="mt-1 block">主動線友善</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="status" class="relative z-10 -mt-7 px-5 lg:px-8">
+      <div class="mx-auto max-w-7xl rounded-[2rem] border border-[#d8cfbb] bg-[#fffdf7] p-6 shadow-[0_24px_70px_rgba(24,50,39,.12)] md:p-8">
+        <div class="grid gap-7 lg:grid-cols-[auto_1fr_auto] lg:items-center">
+          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#fff2cf] text-[#8a6220]" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2.8 19h18.4L12 3Z"/><path d="M12 9v4.5M12 17h.01" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3">
+              <h2 class="text-xl font-semibold text-[#173227]">{site.status.label}</h2>
+            </div>
+            <p class="mt-3 leading-7 text-[#4f6258]">{site.status.summary}</p>
+          </div>
+          <p class="rounded-2xl bg-[#edf2e8] px-5 py-4 text-sm font-medium leading-6 text-[#36503f] lg:max-w-xs">{site.status.expectedCompletion}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="highlights" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <div class="grid gap-14 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+        <div class="relative">
+          <div class="photo-mask overflow-hidden bg-[#dfe7d8]">
+            <img src="/images/owl-forest-treehouse.jpg" alt="林間樹屋、步道與貓頭鷹裝置" width="940" height="627" loading="lazy" class="aspect-[4/3] h-full w-full object-cover" />
+          </div>
+          <div class="absolute -bottom-5 right-3 rounded-2xl bg-[#173227] px-5 py-4 text-white shadow-xl sm:right-8">
+            <p class="text-2xl font-semibold">3 座</p>
+            <p class="mt-1 text-xs text-white/60">代表性活樹屋</p>
+          </div>
+        </div>
+        <div>
+          <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">FOREST HIGHLIGHTS</p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">樹梢上的自然教室</h2>
+          <p class="mt-6 max-w-2xl text-lg leading-9 text-[#52645a]">
+            奧爾森林學堂在既有林木間搭起空中步道，讓樹屋與森林一起生長。這裡不是大型遊樂園，而是一個能慢慢觀察、探索與放電的城市森林空間。
+          </p>
+          <div class="mt-10 grid gap-5 sm:grid-cols-3">
+            {highlights.map((item, index) => (
+              <article class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-5">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#eef2e8] text-sm font-semibold text-[#42604d]">0{index + 1}</span>
+                <h3 class="mt-5 font-semibold text-[#173227]">{item.title}</h3>
+                <p class="mt-3 text-sm leading-7 text-[#617168]">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="bg-[#102018] py-24 text-white">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div>
+          <div class="max-w-2xl">
+            <p class="text-sm font-semibold tracking-[0.22em] text-[#e2bd72]">REAL SCENES</p>
+            <h2 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">走進奧爾森林學堂</h2>
+            <p class="mt-5 leading-8 text-white/60">從樹屋、空中步道到藏在林間的貓頭鷹，出發前先看看現場風景。</p>
+          </div>
+        </div>
+
+        <div class="mt-12 grid auto-rows-[260px] gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[180px]">
+          {galleryPhotos.map((photo, index) => (
+            <figure
+              class:list={[
+                'group relative isolate overflow-hidden rounded-[1.75rem] bg-[#1d362a]',
+                index === 0 && 'sm:col-span-2 lg:col-span-2 lg:row-span-2',
+                index === 1 && 'lg:row-span-2',
+                index === 5 && 'sm:col-span-2 lg:col-span-3',
+              ]}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                loading="lazy"
+                class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+              />
+              <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <figcaption class="absolute inset-x-0 bottom-0 z-10 p-5">
+                <p class="font-semibold">{photo.caption}</p>
+                <p class="mt-1 text-xs text-white/60">攝影：{photo.author}</p>
+              </figcaption>
+              <button
+                type="button"
+                class="absolute inset-0 z-20 cursor-zoom-in rounded-[1.75rem] focus-visible:outline-2 focus-visible:outline-offset-[-5px] focus-visible:outline-[#e2bd72]"
+                aria-label={`放大查看：${photo.caption}`}
+                data-gallery-open
+                data-index={index}
+                data-src={photo.src}
+                data-alt={photo.alt}
+                data-caption={photo.caption}
+                data-author={photo.author}
+              ></button>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <dialog
+      id="gallery-lightbox"
+      class="m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 text-white backdrop:bg-black/90"
+      aria-label="實景照片大圖預覽"
+    >
+      <div class="flex h-full w-full flex-col items-center justify-center bg-[#08110d]/95 px-4 py-6 sm:px-16" data-gallery-backdrop>
+        <button
+          type="button"
+          class="absolute right-4 top-4 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-black/45 text-2xl text-white transition hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-7 sm:top-7"
+          aria-label="關閉大圖"
+          data-gallery-close
+        >×</button>
+
+        <button
+          type="button"
+          class="absolute left-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 text-3xl text-white transition hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:left-7 sm:h-14 sm:w-14"
+          aria-label="上一張照片"
+          data-gallery-prev
+        >‹</button>
+
+        <figure class="flex min-h-0 max-w-6xl flex-1 flex-col items-center justify-center">
+          <img
+            id="gallery-lightbox-image"
+            src={galleryPhotos[0].src}
+            alt={galleryPhotos[0].alt}
+            class="min-h-0 max-h-[78vh] max-w-[calc(100vw-2rem)] rounded-2xl object-contain shadow-2xl sm:max-w-[calc(100vw-10rem)]"
+          />
+          <figcaption class="mt-4 text-center">
+            <p id="gallery-lightbox-caption" class="font-semibold"></p>
+            <p class="mt-1 text-sm text-white/55">
+              <span id="gallery-lightbox-author"></span>
+              <span aria-hidden="true">・</span>
+              <span id="gallery-lightbox-counter"></span>
+            </p>
+          </figcaption>
+        </figure>
+
+        <button
+          type="button"
+          class="absolute right-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 text-3xl text-white transition hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-7 sm:h-14 sm:w-14"
+          aria-label="下一張照片"
+          data-gallery-next
+        >›</button>
+      </div>
+    </dialog>
+
+    <section class="bg-[#173227] py-24 text-white">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold tracking-[0.22em] text-[#e2bd72]">BEFORE YOU GO</p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">一眼看懂行前資訊</h2>
+          <p class="mt-5 leading-8 text-white/60">保留最常被問到的內容，手機打開就能快速確認。</p>
+        </div>
+        <div class="mt-12 grid gap-px overflow-hidden rounded-[2rem] bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+          {quickFacts.map(([label, value]) => (
+            <div class="bg-[#173227] p-7 transition hover:bg-[#1d3b2f]">
+              <p class="text-sm text-white/45">{label}</p>
+              <p class="mt-3 text-xl font-semibold">{value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="routes" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
+        <div>
+          <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">ROUTE PLANNER</p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">今天想玩多久？</h2>
+          <p class="mt-6 leading-8 text-[#617168]">依照停留時間切換路線。所有建議都能在施工期間彈性縮短或折返。</p>
+          <div class="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="選擇遊玩時間">
+            {routes.map((route, index) => (
+              <button
+                class:list={[
+                  'route-tab rounded-full border px-5 py-3 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173227]',
+                  index === 0 ? 'border-[#173227] bg-[#173227] text-white' : 'border-[#cfc7b6] bg-white text-[#42574c] hover:border-[#82956d]'
+                ]}
+                type="button"
+                role="tab"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-controls={`route-${route.id}`}
+                data-route={route.id}
+              >
+                {route.label}・{route.duration}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] bg-[#eef2e8] p-6 sm:p-9">
+          {routes.map((route, index) => (
+            <article id={`route-${route.id}`} class="route-panel" role="tabpanel" hidden={index !== 0} data-panel={route.id}>
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p class="text-sm text-[#68776e]">{route.audience}</p>
+                  <h3 class="mt-2 text-3xl font-semibold text-[#173227]">{route.duration}</h3>
+                </div>
+                <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#42604d]">步行強度：{route.effort}</span>
+              </div>
+              <p class="mt-6 leading-8 text-[#52645a]">{route.description}</p>
+              <ol class="mt-8 grid gap-3">
+                {route.stops.map((stop, stopIndex) => (
+                  <li class="flex items-center gap-4 rounded-2xl bg-white/80 p-4">
+                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#173227] text-sm font-semibold text-white">{stopIndex + 1}</span>
+                    <span class="font-medium text-[#2c4437]">{stop}</span>
+                  </li>
+                ))}
+              </ol>
+              <p class="mt-6 rounded-2xl border border-[#d2dbc9] bg-white/55 p-4 text-sm leading-7 text-[#53675a]">{route.note}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="overflow-hidden bg-[#f0eadc] py-24">
+      <div class="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:px-8">
+        <div class="order-2 lg:order-1">
+          <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">FAMILY CHECKLIST</p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">帶孩子出發前，記得這些</h2>
+          <div class="mt-10 grid gap-3 sm:grid-cols-2">
+            {checklist.map(([title, text], index) => (
+              <label class="group flex cursor-pointer gap-3 rounded-2xl bg-white/75 p-4 transition hover:bg-white">
+                <input class="mt-1 h-5 w-5 shrink-0 accent-[#365d4b]" type="checkbox" data-check={index} />
+                <span>
+                  <strong class="block text-[#244437]">{title}</strong>
+                  <span class="mt-1 block text-sm leading-6 text-[#65736b]">{text}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+          <p id="check-progress" class="mt-5 text-sm font-medium text-[#52645a]" aria-live="polite">已準備 0 / {checklist.length} 項</p>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div class="relative overflow-hidden rounded-[2.5rem] bg-[#365d4b] p-4 shadow-[0_30px_70px_rgba(39,64,50,.18)]">
+            <img src="/images/owl-forest-sign.jpg" alt="奧爾森林學堂入口的貓頭鷹造型與木棧道" width="600" height="399" loading="lazy" class="aspect-[4/3] w-full rounded-[2rem] object-cover" />
+            <div class="absolute bottom-7 left-7 rounded-2xl bg-[#102018]/80 px-5 py-4 text-white backdrop-blur">
+              <p class="text-sm text-white/60">親子提示</p>
+              <p class="mt-1 font-semibold">雨後木棧道較濕滑</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="transport" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <div class="grid overflow-hidden rounded-[2.5rem] bg-[#173227] lg:grid-cols-[.95fr_1.05fr]">
+        <div class="p-8 text-white sm:p-12">
+          <p class="text-sm font-semibold tracking-[0.22em] text-[#e2bd72]">GETTING THERE</p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight">交通與停車</h2>
+          <div class="mt-9 space-y-7">
+            <div>
+              <p class="text-sm text-white/45">地址</p>
+              <p class="mt-2 leading-7">{site.address}</p>
+            </div>
+            <div>
+              <p class="text-sm text-white/45">自駕建議</p>
+              <p class="mt-2 leading-7 text-white/75">週末停車位較容易滿，建議上午 9 點前抵達。下車後依虎頭山公園及孔廟方向指標步行。</p>
+            </div>
+            <div>
+              <p class="text-sm text-white/45">公車與步行</p>
+              <p class="mt-2 leading-7 text-white/75">可於虎頭山公園、三聖宮等鄰近站點下車；班次與停靠位置請以當日即時資訊為準。</p>
+            </div>
+          </div>
+          <a class="mt-9 inline-flex rounded-full bg-[#e2bd72] px-6 py-3.5 font-semibold text-[#173227] transition hover:bg-[#f0d28e]" href={site.mapUrl} target="_blank" rel="noopener noreferrer">使用 Google 地圖導航 ↗</a>
+        </div>
+        <div class="relative min-h-[420px] overflow-hidden bg-[#e8e2d3]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3615.950014399176!2d121.327567!3d25.0018144!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34681e5e9b731c09%3A0xa5146185df59f6dc!2z5aWl5bCU5qOu5p6X5a2m5aCC!5e0!3m2!1szh-TW!2stw!4v1785380781552!5m2!1szh-TW!2stw"
+            title="奧爾森林學堂 Google 地圖"
+            width="600"
+            height="450"
+            class="absolute inset-0 h-full w-full"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="food" class="overflow-hidden bg-[#f0eadc] py-24">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">NEARBY FOOD</p>
+            <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">逛完森林，附近吃什麼？</h2>
+            <p class="mt-6 text-lg leading-9 text-[#52645a]">
+              以奧爾森林學堂的地圖位置為起點，整理周邊適合接續行程的台式小吃、湯包麵食與火鍋。
+            </p>
+          </div>
+          <p class="max-w-sm rounded-2xl border border-[#d9cfbc] bg-white/55 px-5 py-4 text-sm leading-6 text-[#617168]">
+            照片為餐點類型示意；實際菜色、營業時間與店休請以店家最新公告為準。
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-3">
+          {nearbyFood.map((place) => (
+            <article class="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-[#ded4c1] bg-[#fffdf8] shadow-[0_18px_45px_rgba(42,54,46,.08)]">
+              <div class="relative overflow-hidden bg-[#d8dfd2]">
+                <img
+                  src={place.image}
+                  alt={place.alt}
+                  width={place.width}
+                  height={place.height}
+                  loading="lazy"
+                  class="aspect-[3/2] h-full w-full object-cover transition duration-700 group-hover:scale-[1.035]"
+                />
+                <span class="absolute left-5 top-5 rounded-full bg-[#173227]/90 px-3.5 py-2 text-xs font-semibold text-white backdrop-blur">
+                  {place.category}
+                </span>
+                <span class="absolute bottom-4 right-4 rounded-full bg-black/55 px-3 py-1.5 text-xs text-white/90 backdrop-blur">
+                  餐點示意
+                </span>
+              </div>
+              <div class="flex flex-1 flex-col p-6">
+                <h3 class="text-2xl font-semibold tracking-tight text-[#173227]">{place.name}</h3>
+                <p class="mt-4 flex-1 leading-7 text-[#5d6d64]">{place.description}</p>
+                <div class="mt-6 border-t border-[#e5ddce] pt-5">
+                  <p class="flex gap-2 text-sm leading-6 text-[#69786f]">
+                    <svg viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 shrink-0 text-[#7b6333]" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                    <span>{place.address}</span>
+                  </p>
+                  <a
+                    class="mt-5 inline-flex items-center gap-2 rounded-full bg-[#173227] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#254838] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#173227]"
+                    href={place.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    開啟 Google 地圖
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="mx-auto max-w-4xl px-5 pb-24 pt-8">
+      <div class="text-center">
+        <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">FAQ</p>
+        <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">出發前常見問題</h2>
+      </div>
+      <div class="mt-12 divide-y divide-[#ded7c8] border-y border-[#ded7c8]">
+        {faqs.map((item, index) => (
+          <details class="group py-2" open={index === 0}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-5 py-5 font-semibold text-[#244437]">
+              <span>{item.q}</span>
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#edf2e8] text-xl transition group-open:rotate-45" aria-hidden="true">＋</span>
+            </summary>
+            <p class="max-w-3xl pb-6 pr-12 leading-8 text-[#607067]">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+
+  <div class="fixed inset-x-4 bottom-4 z-40 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#102018]/92 p-2 text-white shadow-2xl backdrop-blur-xl md:hidden">
+    <a class="flex-1 rounded-xl px-3 py-3 text-center text-sm font-semibold hover:bg-white/8" href="#status">開放狀況</a>
+    <a class="flex-1 rounded-xl px-3 py-3 text-center text-sm font-semibold hover:bg-white/8" href="#routes">親子路線</a>
+    <a class="flex-1 rounded-xl bg-[#e2bd72] px-3 py-3 text-center text-sm font-semibold text-[#173227]" href={site.mapUrl} target="_blank" rel="noopener noreferrer">導航</a>
+  </div>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.route-tab'));
+    const panels = Array.from(document.querySelectorAll<HTMLElement>('.route-panel'));
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.route;
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.setAttribute('aria-selected', String(active));
+          item.classList.toggle('bg-[#173227]', active);
+          item.classList.toggle('text-white', active);
+          item.classList.toggle('border-[#173227]', active);
+          item.classList.toggle('bg-white', !active);
+          item.classList.toggle('text-[#42574c]', !active);
+          item.classList.toggle('border-[#cfc7b6]', !active);
+        });
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.panel !== target;
+        });
+      });
+    });
+
+    const checks = Array.from(document.querySelectorAll<HTMLInputElement>('[data-check]'));
+    const progress = document.querySelector<HTMLElement>('#check-progress');
+    const updateProgress = () => {
+      if (!progress) return;
+      const count = checks.filter((item) => item.checked).length;
+      progress.textContent = `已準備 ${count} / ${checks.length} 項`;
+    };
+    checks.forEach((check) => check.addEventListener('change', updateProgress));
+
+    const galleryItems = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-gallery-open]'));
+    const lightbox = document.querySelector<HTMLDialogElement>('#gallery-lightbox');
+    const lightboxImage = document.querySelector<HTMLImageElement>('#gallery-lightbox-image');
+    const lightboxCaption = document.querySelector<HTMLElement>('#gallery-lightbox-caption');
+    const lightboxAuthor = document.querySelector<HTMLElement>('#gallery-lightbox-author');
+    const lightboxCounter = document.querySelector<HTMLElement>('#gallery-lightbox-counter');
+    const lightboxClose = document.querySelector<HTMLButtonElement>('[data-gallery-close]');
+    const lightboxPrev = document.querySelector<HTMLButtonElement>('[data-gallery-prev]');
+    const lightboxNext = document.querySelector<HTMLButtonElement>('[data-gallery-next]');
+    const lightboxBackdrop = document.querySelector<HTMLElement>('[data-gallery-backdrop]');
+    let activePhoto = 0;
+
+    const showPhoto = (index: number) => {
+      const item = galleryItems[index];
+      if (!item || !lightboxImage || !lightboxCaption || !lightboxAuthor || !lightboxCounter) return;
+      activePhoto = index;
+      lightboxImage.src = item.dataset.src || '';
+      lightboxImage.alt = item.dataset.alt || '';
+      lightboxCaption.textContent = item.dataset.caption || '';
+      lightboxAuthor.textContent = `攝影：${item.dataset.author || ''}`;
+      lightboxCounter.textContent = `${index + 1} / ${galleryItems.length}`;
+    };
+
+    const changePhoto = (offset: number) => {
+      if (!galleryItems.length) return;
+      showPhoto((activePhoto + offset + galleryItems.length) % galleryItems.length);
+    };
+
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        if (!lightbox) return;
+        showPhoto(index);
+        lightbox.showModal();
+      });
+    });
+
+    lightboxClose?.addEventListener('click', () => lightbox?.close());
+    lightboxPrev?.addEventListener('click', () => changePhoto(-1));
+    lightboxNext?.addEventListener('click', () => changePhoto(1));
+    lightboxBackdrop?.addEventListener('click', (event) => {
+      if (event.target === lightboxBackdrop) lightbox?.close();
+    });
+    lightbox?.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') changePhoto(-1);
+      if (event.key === 'ArrowRight') changePhoto(1);
+    });
+
+  </script>
+</BaseLayout>

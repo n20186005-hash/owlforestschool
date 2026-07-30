@@ -1,0 +1,63 @@
+---
+import '@/styles/global.css';
+import { site } from '@/data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  image = '/images/og-image.jpg',
+  canonicalPath = Astro.url.pathname,
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(canonicalPath, site.url).toString();
+const imageUrl = new URL(image, site.url).toString();
+---
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173227" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:site_name" content="奧爾森林學堂旅遊指南" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content="奧爾森林學堂樹屋與森林景觀" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <title>{title}</title>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXM22WWPKP');
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

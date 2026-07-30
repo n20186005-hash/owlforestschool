@@ -1,0 +1,28 @@
+---
+import OwlMark from './OwlMark.astro';
+import { site } from '@/data/site';
+---
+<footer class="bg-[#102018] pb-24 pt-14 text-white md:pb-10">
+  <div class="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[1fr_auto] lg:px-8">
+    <div class="max-w-2xl">
+      <div class="flex items-center gap-3">
+        <OwlMark class="h-11 w-11 text-[#e2bd72]" />
+        <div>
+          <p class="font-semibold tracking-[0.08em]">奧爾森林學堂旅遊指南</p>
+          <p class="mt-1 text-sm text-white/55">{site.domain}</p>
+        </div>
+      </div>
+      <p class="mt-6 text-sm leading-7 text-white/60">
+        本站為獨立旅遊資訊網站
+      </p>
+    </div>
+    <div class="flex flex-wrap content-start gap-x-6 gap-y-3 text-sm text-white/65 lg:justify-end">
+      <a class="hover:text-white" href="/about">關於本站</a>
+      <a class="hover:text-white" href="/privacy">隱私權說明</a>
+      <a class="hover:text-white" href="#top">回到頂端</a>
+    </div>
+  </div>
+  <div class="mx-auto mt-10 max-w-7xl border-t border-white/10 px-5 pt-6 text-xs text-white/40 lg:px-8">
+    © {new Date().getFullYear()} OwlForestSchool.com
+  </div>
+</footer>
