@@ -1,0 +1,47 @@
+---
+import { seasons } from '@/data/guide';
+---
+
+<section id="seasonal" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+  <div class="max-w-3xl">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">SEASONAL STRATEGY</p>
+    <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">季度遊覽策略表</h2>
+    <p class="mt-6 text-lg leading-9 text-[#52645a]">
+      以下依桃園／北台灣長期氣候特徵（常年氣候態）整理，幫助你判斷各季的氣象、水質步道與野生動物觀察條件；實際出發仍請以即時天氣預報與現場狀況為準。
+    </p>
+  </div>
+
+  <div class="mt-12 overflow-hidden rounded-[2rem] border border-[#ded7c8] bg-[#fffdf7] shadow-[0_18px_45px_rgba(42,54,46,.08)]">
+    <div class="overflow-x-auto">
+      <table class="w-full min-w-[820px] border-collapse text-left text-sm">
+        <thead>
+          <tr class="bg-[#173227] text-white">
+            <th class="px-5 py-4 font-semibold">季節</th>
+            <th class="px-5 py-4 font-semibold">氣象特徵</th>
+            <th class="px-5 py-4 font-semibold">水質與步道</th>
+            <th class="px-5 py-4 font-semibold">野生動物觀察</th>
+            <th class="px-5 py-4 font-semibold">出行建議</th>
+          </tr>
+        </thead>
+        <tbody>
+          {seasons.map((s, i) => (
+            <tr class:list={['border-t border-[#e5ddce] align-top', i % 2 === 1 && 'bg-[#f7f4ec]']}>
+              <td class="px-5 py-5">
+                <div class="flex items-center gap-2">
+                  <span class="font-semibold text-[#173227]">{s.season}</span>
+                  {s.recommended && (
+                    <span class="rounded-full bg-[#365d4b] px-2.5 py-1 text-xs font-semibold text-white">推薦</span>
+                  )}
+                </div>
+              </td>
+              <td class="px-5 py-5 leading-7 text-[#5d6d64]">{s.weather}</td>
+              <td class="px-5 py-5 leading-7 text-[#5d6d64]">{s.water}</td>
+              <td class="px-5 py-5 leading-7 text-[#5d6d64]">{s.wildlife}</td>
+              <td class="px-5 py-5 leading-7 text-[#36503f]">{s.advice}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

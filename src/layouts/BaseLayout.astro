@@ -32,6 +32,10 @@ const imageUrl = new URL(image, site.url).toString();
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="奧爾森林學堂" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     {noindex && <meta name="robots" content="noindex,follow" />}
 
     <meta property="og:type" content="website" />
@@ -59,5 +63,12 @@ const imageUrl = new URL(image, site.url).toString();
   </head>
   <body>
     <slot />
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

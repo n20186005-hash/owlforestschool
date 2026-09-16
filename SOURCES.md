@@ -4,6 +4,13 @@
 
 ## 景點資料
 
+- Google 地圖用戶評價（評分與評價數）
+  - 同步自 Google 地圖（Google Maps）用戶評價，同步時間：2026 年 9 月
+  - 評分 4.4（5 分制）、8,003 則評價；類型：城市公園（City park）
+  - 分享短連結：https://maps.app.goo.gl/DkMT1LgizXtkuL8s7
+  - 版權歸原作者與 Google 地圖所有；評價僅於網站展示，不納入結構化資料（JSON-LD）
+  - 網站資料維護於 `src/data/site.ts` 的 `rating` 欄位
+
 - 桃園觀光導覽網：奧爾森林學堂
   - https://travel.tycg.gov.tw/zh-tw/travel/attraction/14
 - 桃園市政府風景區管理處：虎頭山風景特定區服務設施改造工程

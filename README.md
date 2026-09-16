@@ -45,7 +45,7 @@ pnpm deploy
 src/data/site.ts
 ```
 
-請更新 `status.checkedAt`、施工摘要及預計完成時間。照片更新時直接替換 `public/images/` 內同名檔案即可。
+請更新 `status.checkedAt`、施工摘要及預計完成時間。照片更新時直接替換 `public/images/` 內同名檔案即可。Google 地圖評分與評價數維護於 `rating` 欄位，同步時間請一併更新。
 
 ## 圖片授權提醒
 

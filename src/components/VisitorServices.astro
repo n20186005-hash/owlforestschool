@@ -1,0 +1,30 @@
+---
+import { visitorServices } from '@/data/guide';
+---
+
+<section id="services" class="overflow-hidden bg-[#f0eadc] py-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">VISITOR SERVICES</p>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">訪客服務與周邊設施</h2>
+      <p class="mt-6 text-lg leading-9 text-[#52645a]">
+        以下以「設施類型」整理出門前可先規劃的事項；本指南保持中立，不推薦特定商戶，請依當日狀況與個人需求選擇。
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {visitorServices.map((item) => (
+        <article class="flex h-full flex-col rounded-[2rem] border border-[#ded4c1] bg-[#fffdf8] p-7 shadow-[0_18px_45px_rgba(42,54,46,.08)]">
+          <div class="flex items-center gap-3">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eef2e8] text-2xl" aria-hidden="true">{item.emoji}</span>
+            <h3 class="text-xl font-semibold text-[#173227]">{item.type}</h3>
+          </div>
+          <p class="mt-5 flex-1 leading-7 text-[#5d6d64]">{item.summary}</p>
+          <p class="mt-5 rounded-2xl border border-[#e3dccd] bg-white/60 p-4 text-sm leading-6 text-[#617168]">
+            <span class="font-semibold text-[#36503f]">小提醒：</span>{item.tip}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

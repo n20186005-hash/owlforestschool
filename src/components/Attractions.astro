@@ -1,0 +1,42 @@
+---
+import { site } from '@/data/site';
+const { attractions } = site;
+---
+<section id="treehouses" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+  <div class="max-w-3xl">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">TREEHOUSES</p>
+    <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">三大活樹屋：咕咕屋・讀樹教室・綠野方舟</h2>
+    <p class="mt-6 text-lg leading-9 text-[#52645a]">{attractions.intro}</p>
+  </div>
+
+  <div class="mt-12 grid gap-6 lg:grid-cols-3">
+    {attractions.treehouses.map((item) => (
+      <article id={item.id} class="scroll-mt-24 rounded-[2rem] border border-[#ded7c8] bg-white p-7 shadow-[0_18px_45px_rgba(42,54,46,.08)]">
+        <span class="inline-flex rounded-full bg-[#eef2e8] px-4 py-1.5 text-xs font-semibold text-[#42604d]">奧爾森林學堂樹屋</span>
+        <h3 class="mt-5 text-2xl font-semibold tracking-tight text-[#173227]">{item.name}</h3>
+        <p class="mt-4 leading-8 text-[#5d6d64]">{item.text}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section id="facilities" class="bg-[#f0eadc] py-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">FACILITIES</p>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">天空步道與水管溜滑梯</h2>
+      <p class="mt-6 text-lg leading-9 text-[#52645a]">除了樹屋，園區還有適合散步的空中步道與親子放電的兒童設施，規劃路線時可一併排入。</p>
+    </div>
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+      <article id="skywalk" class="scroll-mt-24 rounded-[2rem] border border-[#ded4c1] bg-[#fffdf8] p-8 shadow-[0_18px_45px_rgba(42,54,46,.08)]">
+        <h3 class="text-2xl font-semibold tracking-tight text-[#173227]">天空步道</h3>
+        <p class="mt-4 leading-8 text-[#5d6d64]">{attractions.skywalk.text}</p>
+      </article>
+      <article id="slide" class="scroll-mt-24 rounded-[2rem] border border-[#ded4c1] bg-[#fffdf8] p-8 shadow-[0_18px_45px_rgba(42,54,46,.08)]">
+        <h3 class="text-2xl font-semibold tracking-tight text-[#173227]">水管溜滑梯</h3>
+        <p class="mt-4 leading-8 text-[#5d6d64]">{attractions.slide.text}</p>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+{
+  "name": "奧爾森林學堂旅遊指南",
+  "short_name": "奧爾森林學堂",
+  "description": "奧爾森林學堂（Owl Forest School）親子樹屋、停車與最新開放資訊旅遊指南。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#102018",
+  "theme_color": "#173227",
+  "lang": "zh-Hant-TW",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

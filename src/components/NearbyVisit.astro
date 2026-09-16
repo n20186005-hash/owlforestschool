@@ -1,0 +1,29 @@
+---
+import { site } from '@/data/site';
+const { nearbyVisit } = site;
+---
+<section id="nearby" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+  <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+    <div>
+      <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">NEARBY VISIT</p>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">周邊順遊：孔廟・神社・虎頭山步道</h2>
+      <p class="mt-6 text-lg leading-9 text-[#52645a]">{nearbyVisit.intro}</p>
+      <p class="mt-6 rounded-2xl border border-[#d9cfbc] bg-[#fffdf7] px-5 py-4 text-sm leading-6 text-[#617168]">
+        各景點的開放時間、參觀動線與活動以現場與官方公告為準；更多桃園觀光資訊可參考
+        <a href={site.govtTourismUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-[#36503f] underline underline-offset-2 hover:text-[#173227]">桃園觀光導覽網 ↗</a>。
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+      {nearbyVisit.items.map((item) => (
+        <article id={item.id} class="scroll-mt-24 flex gap-5 rounded-[2rem] border border-[#ded7c8] bg-white p-6 sm:p-7 shadow-[0_18px_45px_rgba(42,54,46,.08)]">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#eef2e8] text-sm font-semibold text-[#42604d]">{item.name.slice(0, 1)}</span>
+          <div>
+            <h3 class="text-2xl font-semibold tracking-tight text-[#173227]">{item.name}</h3>
+            <p class="mt-3 leading-8 text-[#5d6d64]">{item.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

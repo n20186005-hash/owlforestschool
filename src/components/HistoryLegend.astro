@@ -1,0 +1,25 @@
+---
+import { about } from '@/data/guide';
+---
+
+<section id="story" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+  <div class="grid gap-14 lg:grid-cols-2 lg:items-start">
+    <div>
+      <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">BACKGROUND &amp; STORY</p>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[#173227] sm:text-5xl">關於這片森林的故事</h2>
+      <p class="mt-6 text-lg leading-9 text-[#52645a]">{about.intro}</p>
+      <p class="mt-5 leading-8 text-[#5d6d64]">{about.ecology}</p>
+    </div>
+
+    <figure class="rounded-[2.5rem] bg-[#365d4b] p-8 text-white shadow-[0_30px_70px_rgba(39,64,50,.18)]">
+      <span class="inline-flex items-center gap-2 rounded-full bg-[#102018]/40 px-4 py-2 text-xs font-semibold tracking-wide text-[#e2bd72]">
+        {about.storyLabel}
+      </span>
+      <blockquote class="mt-6 text-2xl font-semibold leading-10">「森林的守夜人」</blockquote>
+      <p class="mt-5 leading-8 text-white/80">{about.story}</p>
+      <figcaption class="mt-6 border-t border-white/15 pt-5 text-xs text-white/55">
+        本篇為環境教育用的生態寓言，旨在引導親子理解生物多樣性，非特定歷史記載。
+      </figcaption>
+    </figure>
+  </div>
+</section>
