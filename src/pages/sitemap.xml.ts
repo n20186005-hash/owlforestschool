@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { site } from '@/data/site';
 
-const pages = ['/', '/about', '/privacy'];
+const pages = ['/', '/about', '/privacy', '/opening-status', '/parking-transport', '/family-guide'];
 
 export const GET: APIRoute = () => {
   const body = `<?xml version="1.0" encoding="UTF-8"?>

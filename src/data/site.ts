@@ -13,9 +13,9 @@ export const site = {
   name: '奧爾森林學堂',
   domain: 'OwlForestSchool.com',
   url: 'https://owlforestschool.com',
-  title: '奧爾森林學堂｜虎頭山親子樹屋、停車與最新開放資訊',
+  title: '奧爾森林學堂｜2026開放狀況、停車交通與親子樹屋攻略',
   description:
-    '整理奧爾森林學堂最新開放狀況、樹屋與天空步道、親子玩法、停車交通、推車友善與虎頭山半日路線；免門票、適合親子散步。',
+    '桃園奧爾森林學堂位於虎頭山公園，免費入園，擁有貓頭鷹樹屋與空中步道。整理2026年分區施工與開放資訊、停車交通、親子遊玩路線及附近景點，出發前先查看最新公告。',
   address: '桃園市桃園區公園路42號（虎頭山公園內、孔廟旁）',
   coordinates: { lat: 25.0018144, lng: 121.327567 },
   mapUrl:
@@ -23,13 +23,28 @@ export const site = {
   status: {
     code: 'partial-open',
     label: '分區施工・分期開放',
-    checkedAt: '2026-07-29',
-    staleAfterDays: 30,
-    summary:
-      '虎頭山風景特定區服務設施改造工程進行中，部分動線與遊具可能依現場調整。出發前請留意圍籬與公告。',
+    startedAt: '2025-11-05',
     expectedCompletion: '預計 2026 年 12 月 31 日全區完工',
+    checkedAt: '2026-10-13',
+    sourceLabel: '桃園市政府・虎頭山公園服務設施改造工程',
+    sourceUrl: 'https://travel.tycg.gov.tw/zh-tw/travel/attraction/14',
+    summary:
+      '虎頭山風景特定區服務設施改造工程進行中，採分區施工、分期開放；施工圍籬範圍外的區域原則上可正常使用，但個別設施（如樹屋、溜滑梯、步道）是否開放仍以現場入口與圍籬公告為準。',
+    zones: [
+      {
+        name: '主題遊戲區',
+        note: '部分遊具可能因施工圍籬或安全評估暫停開放，現場會有告示引導，請依現場狀態勿強行使用。',
+      },
+      {
+        name: '森林探索區 / 天空步道',
+        note: '步道多維持開放，但局部路段可能因工程需繞行，請依指標與現場引導行走。',
+      },
+    ],
+    unknownNote:
+      '樹屋、溜滑梯等設施能否當天遊玩，依現場公告而定；本站立場僅轉述公開資訊，不臆測即時開放狀態。',
   },
   phone: '+886 3 394 6061',
+  phoneNote: '以上電話為景點管理單位聯絡電話；本站為獨立資訊站，不提供現場客服或預約。',
   plusCode: '282H+P2（桃園市桃園區三元里）',
   mapsShareUrl: 'https://maps.app.goo.gl/DkMT1LgizXtkuL8s7',
   govtTourismUrl: 'https://travel.tycg.gov.tw/zh-tw/travel/attraction/14',
@@ -141,11 +156,11 @@ export const site = {
   },
   rating: {
     score: 4.4,
-    count: 8003,
+    count: 8025,
     category: '城市公園',
-    syncedAt: '2026 年 9 月',
+    syncedAt: '2026 年 10 月',
   },
-  reviewedAt: '2026 年 9 月',
+  reviewedAt: '2026 年 10 月',
 };
 
 export const highlights = [

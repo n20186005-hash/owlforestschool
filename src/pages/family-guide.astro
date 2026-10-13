@@ -1,0 +1,169 @@
+---
+import SubpageLayout from '@/layouts/SubpageLayout.astro';
+import { site, checklist, routes } from '@/data/site';
+import { audienceRoutes } from '@/data/guide';
+
+const familyRoute = routes.find((route) => route.id === 'family');
+const familyAudience = audienceRoutes.find((item) => item.audience === '親子家庭');
+
+const faqs = [
+  {
+    q: '奧爾森林學堂適合幾歲的孩子？',
+    a: '以幼兒至國小階段最能享受樹屋與森林探索；低齡孩子需要成人全程陪同，並依現場開放設施評估。園區免費入園、主動線相對平緩，適合安排 1～2 小時的輕量散步。',
+  },
+  {
+    q: '可以推嬰兒車嗎？',
+    a: '主要動線相對平緩，輕便推車較容易通行；但樹屋入口、局部坡道與施工替代路線可能不完全無障礙，建議攜帶輕便、可收折的推車並預留繞行彈性。',
+  },
+  {
+    q: '下雨天適合帶孩子去嗎？',
+    a: '不建議在大雨或雷雨時前往；雨後木棧道、落葉和坡面容易濕滑，兒童活動也會受到限制。出發前可參考首頁即時天氣與 7 日預報。',
+  },
+  {
+    q: '園區有餐飲和廁所嗎？',
+    a: '園區以輕食與飲料販售為主，並設有公共廁所；正餐與補給建議安排在周邊市區。更完整的設施說明可參考首頁的訪客服務與周邊設施。',
+  },
+];
+---
+
+<SubpageLayout
+  title="奧爾森林學堂親子攻略｜樹屋、遊具與幼兒友善路線"
+  description={'奧爾森林學堂（桃園虎頭山）適合親子嗎？整理貓頭鷹樹屋、天空步道、水管溜滑梯、年齡與推車建議、親子準備清單與半日路線，出發前先看這篇。'}
+  canonicalPath="/family-guide"
+  heroTitle="親子遊玩攻略"
+  heroSubtitle="從三座活樹屋到林下遊戲，帶你用孩子的視角安排一場桃園虎頭山親子半日遊。"
+  breadcrumbLabel="親子遊玩攻略"
+  faqs={faqs}
+  current="family-guide"
+>
+  <section>
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">WHY KIDS LOVE IT</p>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">為什麼適合親子？</h2>
+    <p class="mt-5 leading-8 text-[#52645a]">
+      奧爾森林學堂以三座與林木共生的活樹屋為核心，沿空中步道串連，把自然觀察變成孩子的探險。免費入園、動線相對平緩，很適合安排 1～2 小時的輕量散步，也能接續孔廟與虎頭山步道。
+    </p>
+  </section>
+
+  <section class="mt-14">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">TREEHOUSES</p>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">三大活樹屋與設施</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-3">
+      {
+        site.attractions.treehouses.map((item) => (
+          <div class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-6 shadow-[0_12px_30px_rgba(42,54,46,.06)]">
+            <span class="inline-flex rounded-full bg-[#eef2e8] px-4 py-1.5 text-xs font-semibold text-[#42604d]">奧爾森林學堂樹屋</span>
+            <h3 class="mt-4 text-xl font-semibold tracking-tight text-[#173227]">{item.name}</h3>
+            <p class="mt-3 leading-7 text-[#5d6d64]">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-5 grid gap-5 sm:grid-cols-2">
+      <div class="rounded-[1.5rem] border border-[#ded4c1] bg-[#fffdf8] p-6">
+        <h3 class="text-xl font-semibold tracking-tight text-[#173227]">{site.attractions.skywalk.name}</h3>
+        <p class="mt-3 leading-7 text-[#5d6d64]">{site.attractions.skywalk.text}</p>
+      </div>
+      <div class="rounded-[1.5rem] border border-[#ded4c1] bg-[#fffdf8] p-6">
+        <h3 class="text-xl font-semibold tracking-tight text-[#173227]">{site.attractions.slide.name}</h3>
+        <p class="mt-3 leading-7 text-[#5d6d64]">{site.attractions.slide.text}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-14">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">AGE & STROLLER</p>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">年齡與推車建議</h2>
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+      <li class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-5 leading-7 text-[#52645a]"><strong class="text-[#244437]">適合對象</strong>：幼兒～國小，想放電也想觀察自然最剛好。</li>
+      <li class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-5 leading-7 text-[#52645a]"><strong class="text-[#244437]">推車體驗</strong>：主動線較友善，但局部坡道與施工替代路線可能不完全無障礙。</li>
+      <li class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-5 leading-7 text-[#52645a]"><strong class="text-[#244437]">最佳時段</strong>：上午光線柔和、人也少；午後 3 點後也相對舒適。</li>
+      <li class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-5 leading-7 text-[#52645a]"><strong class="text-[#244437]">雨後提醒</strong>：木棧道與落葉較濕滑，兒童活動請特別留意。</li>
+    </ul>
+  </section>
+
+  <section class="mt-14">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">FAMILY ROUTE</p>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">親子半日路線建議</h2>
+    {
+      familyRoute && (
+        <div class="mt-6 rounded-[1.5rem] border border-[#ded7c8] bg-[#fffdf7] p-6">
+          <p class="font-semibold text-[#173227]">{familyRoute.label}・{familyRoute.duration}</p>
+          <p class="mt-3 leading-8 text-[#52645a]">{familyRoute.description}</p>
+          <ol class="mt-5 grid gap-3">
+            {familyRoute.stops.map((stop, index) => (
+              <li class="flex items-center gap-4 rounded-2xl bg-white/80 p-4">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#173227] text-sm font-semibold text-white">{index + 1}</span>
+                <span class="font-medium text-[#2c4437]">{stop}</span>
+              </li>
+            ))}
+          </ol>
+          <p class="mt-5 rounded-2xl border border-[#d2dbc9] bg-white/55 p-4 text-sm leading-7 text-[#53675a]">{familyRoute.note}</p>
+        </div>
+      )
+    }
+    {
+      familyAudience && (
+        <p class="mt-5 leading-8 text-[#52645a]">
+          <strong class="text-[#244437]">帶娃重點</strong>：{familyAudience.focus}
+        </p>
+      )
+    }
+  </section>
+
+  <section class="mt-14">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">CHECKLIST</p>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">出發前準備清單</h2>
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+      {
+        checklist.map(([title, text]) => (
+          <li class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-5">
+            <strong class="block text-[#244437]">{title}</strong>
+            <span class="mt-1 block text-sm leading-6 text-[#65736b]">{text}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-14">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">NEARBY</p>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">周邊順遊</h2>
+    <div class="mt-6 grid gap-5">
+      {
+        site.nearbyVisit.items.map((item) => (
+          <div class="rounded-[1.5rem] border border-[#ded7c8] bg-[#fffdf7] p-6">
+            <h3 class="font-semibold text-[#173227]">{item.name}</h3>
+            <p class="mt-3 leading-8 text-[#52645a]">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-14">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">SAFETY</p>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">施工期間的親子注意</h2>
+    <p class="mt-5 leading-8 text-[#52645a]">
+      園區目前為分區施工、分期開放，樹屋與遊具能否當天使用依現場公告而定。請全程陪同孩子，不跨越圍籬、不進入施工區；設施若已封閉或貼出停用通知，請改走維持開放的步道。最新範圍請參考
+      <a href="/opening-status" class="font-semibold text-[#36503f] underline underline-offset-2 hover:text-[#173227]">開放狀況與施工頁面</a>。
+    </p>
+  </section>
+
+  <section class="mt-14">
+    <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">FAQ</p>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">常見問題</h2>
+    <div class="mt-6 divide-y divide-[#ded7c8] border-y border-[#ded7c8]">
+      {
+        faqs.map((item, index) => (
+          <details class="group py-2" open={index === 0}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-5 py-4 font-semibold text-[#244437]">
+              <span>{item.q}</span>
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#edf2e8] text-xl transition group-open:rotate-45" aria-hidden="true">＋</span>
+            </summary>
+            <p class="max-w-3xl pb-5 pr-10 leading-8 text-[#607067]">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+</SubpageLayout>

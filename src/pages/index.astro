@@ -147,6 +147,12 @@ const breadcrumbSchema = {
           </div>
           <p class="rounded-2xl bg-[#edf2e8] px-5 py-4 text-sm font-medium leading-6 text-[#36503f] lg:max-w-xs">{site.status.expectedCompletion}</p>
         </div>
+        <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-[#e7ddc9] pt-5 text-sm text-[#5d6d64]">
+          <span>開工日：<strong class="text-[#36503f]">{site.status.startedAt}</strong></span>
+          <span>最後核對：<strong class="text-[#36503f]">{site.status.checkedAt}</strong></span>
+          <a href={site.status.sourceUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-[#36503f] underline underline-offset-2 hover:text-[#173227]">工程來源：{site.status.sourceLabel} ↗</a>
+          <a href="/opening-status" class="ml-auto inline-flex items-center gap-1 rounded-full bg-[#173227] px-4 py-2 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#254838]">查看完整開放狀況 ↗</a>
+        </div>
       </div>
     </section>
 
@@ -407,6 +413,7 @@ const breadcrumbSchema = {
             ))}
           </div>
           <p id="check-progress" class="mt-5 text-sm font-medium text-[#52645a]" aria-live="polite">已準備 0 / {checklist.length} 項</p>
+          <a class="mt-6 inline-flex items-center gap-1 rounded-full bg-[#173227] px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#254838] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#173227]" href="/family-guide">查看親子完整攻略 ↗</a>
         </div>
         <div class="order-1 lg:order-2">
           <div class="relative overflow-hidden rounded-[2.5rem] bg-[#365d4b] p-4 shadow-[0_30px_70px_rgba(39,64,50,.18)]">
@@ -431,6 +438,7 @@ const breadcrumbSchema = {
               <p class="mt-2 leading-7">{site.address}</p>
               <p class="mt-2 text-sm leading-6 text-white/60">電話：{site.phone}</p>
               <p class="mt-1 text-sm leading-6 text-white/60">Google 地圖 Plus Code：{site.plusCode}</p>
+              <p class="mt-2 text-xs leading-5 text-white/45">{site.phoneNote}</p>
             </div>
 
             <div class="rounded-2xl bg-white/7 p-5">
@@ -464,6 +472,7 @@ const breadcrumbSchema = {
           <div class="mt-9 flex flex-wrap gap-3">
             <a class="inline-flex rounded-full bg-[#e2bd72] px-6 py-3.5 font-semibold text-[#173227] transition hover:-translate-y-0.5 hover:bg-[#f0d28e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href={site.mapUrl} target="_blank" rel="noopener noreferrer">使用 Google 地圖導航 ↗</a>
             <a class="inline-flex rounded-full border border-white/30 bg-white/5 px-6 py-3.5 font-semibold text-white backdrop-blur transition hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href={site.mapsShareUrl} target="_blank" rel="noopener noreferrer">在 Google 地圖查看 ↗</a>
+            <a class="inline-flex rounded-full bg-[#173227] px-6 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#254838] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="/parking-transport">完整停車交通攻略 ↗</a>
           </div>
         </div>
         <div class="relative min-h-[420px] overflow-hidden bg-[#e8e2d3]">
@@ -548,6 +557,31 @@ const breadcrumbSchema = {
     <VisitorServices />
 
     <Conservation />
+
+    <section class="mx-auto max-w-7xl px-5 pb-8 pt-4 lg:px-8">
+      <div class="rounded-[2rem] border border-[#ded7c8] bg-[#fffdf7] p-6 shadow-[0_18px_45px_rgba(42,54,46,.08)] md:p-8">
+        <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">MORE GUIDES</p>
+        <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227] sm:text-4xl">延伸攻略</h2>
+        <p class="mt-4 max-w-2xl leading-8 text-[#52645a]">針對「開放狀況、停車交通、親子玩法」三個高意圖主題，整理更細緻的行前資訊。</p>
+        <div class="mt-8 grid gap-5 sm:grid-cols-3">
+          <a href="/opening-status" class="group rounded-[1.75rem] border border-[#ded7c8] bg-white p-6 transition hover:-translate-y-1 hover:border-[#82956d] hover:shadow-[0_18px_45px_rgba(42,54,46,.1)]">
+            <h3 class="font-semibold text-[#173227]">開放狀況與施工</h3>
+            <p class="mt-2 text-sm leading-6 text-[#617168]">2026 分區施工、設施開放與最新公告核對。</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#36503f] group-hover:gap-2">查看指南 ↗</span>
+          </a>
+          <a href="/parking-transport" class="group rounded-[1.75rem] border border-[#ded7c8] bg-white p-6 transition hover:-translate-y-1 hover:border-[#82956d] hover:shadow-[0_18px_45px_rgba(42,54,46,.1)]">
+            <h3 class="font-semibold text-[#173227]">停車與交通</h3>
+            <p class="mt-2 text-sm leading-6 text-[#617168]">停車場入口、Google 導航、公車與步行動線。</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#36503f] group-hover:gap-2">查看指南 ↗</span>
+          </a>
+          <a href="/family-guide" class="group rounded-[1.75rem] border border-[#ded7c8] bg-white p-6 transition hover:-translate-y-1 hover:border-[#82956d] hover:shadow-[0_18px_45px_rgba(42,54,46,.1)]">
+            <h3 class="font-semibold text-[#173227]">親子遊玩攻略</h3>
+            <p class="mt-2 text-sm leading-6 text-[#617168]">樹屋、遊具與幼兒友善路線的實用建議。</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#36503f] group-hover:gap-2">查看指南 ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <section id="faq" class="mx-auto max-w-4xl px-5 pb-24 pt-8">
       <div class="text-center">
