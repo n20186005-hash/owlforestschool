@@ -1,6 +1,15 @@
 ---
 import { site } from '@/data/site';
 const { nearbyVisit } = site;
+const nearbyLinks: Record<string, string> = {
+  '桃園孔廟': '/nearby/taoyuan-confucius-temple',
+  '孔廟': '/nearby/taoyuan-confucius-temple',
+  '虎頭山全齡友善步道': '/nearby/hutoushan-accessible-trail',
+  '虎頭山公園全齡友善步道': '/nearby/hutoushan-accessible-trail',
+  '忠烈祠暨神社文化園區': '/nearby/taoyuan-martyrs-shrine',
+  '桃園忠烈祠暨神社文化園區': '/nearby/taoyuan-martyrs-shrine',
+  '經國梅園': '/nearby/jingguo-plum-garden',
+};
 ---
 <section id="nearby" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
   <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
@@ -12,6 +21,7 @@ const { nearbyVisit } = site;
         各景點的開放時間、參觀動線與活動以現場與官方公告為準；更多桃園觀光資訊可參考
         <a href={site.govtTourismUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-[#36503f] underline underline-offset-2 hover:text-[#173227]">桃園觀光導覽網 ↗</a>。
       </p>
+      <a href="/nearby" class="mt-6 inline-flex rounded-full bg-[#173227] px-6 py-3 font-semibold text-white transition hover:bg-[#36503f]">探索全部周邊景點 ↗</a>
     </div>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
@@ -21,6 +31,7 @@ const { nearbyVisit } = site;
           <div>
             <h3 class="text-2xl font-semibold tracking-tight text-[#173227]">{item.name}</h3>
             <p class="mt-3 leading-8 text-[#5d6d64]">{item.text}</p>
+            {nearbyLinks[item.name] && <a class="mt-3 inline-block font-semibold text-[#36503f] underline underline-offset-4" href={nearbyLinks[item.name]}>閱讀景點專頁 ↗</a>}
           </div>
         </article>
       ))}
