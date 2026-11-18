@@ -13,11 +13,80 @@ export function getStaticPaths() {
 }
 const place = places.find((item) => item.slug === Astro.params.slug)!;
 const image = `/images/nearby/${place.slug}.jpg`;
-const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(place.name + ' 桃園市桃園區');
+const extra: Record<string, {type:string; manager:string; about:string; landscape:string; experience:string; visit:string; photo:string[]; transport:string; ticket:string; stayArea:string; mapQuery:string; faq:string; faqAnswer:string}> = {
+  'taoyuan-confucius-temple': {
+    type:'儒學文化建築・公共文化景點', manager:'桃園市政府民政局（孔廟忠烈祠管理中心）',
+    about:'桃園孔廟由桃園市政府民政局所屬管理體系維護及辦理相關禮儀文化事務。孔廟座落虎頭山半山腰，以祭孔禮儀、儒學教育與傳統建築為核心，既是文化場域，也是與周邊森林串聯的公共參觀空間。原孔廟忠烈祠聯合管理所已於 2025 年整併至民政局。',
+    landscape:'建築以中軸對稱的院落組織空間。沿階梯向上，先經大成門，再觀察院落、殿宇屋脊和柱列的比例；高差讓儀式空間與坡地景觀自然連結。',
+    experience:'可以將參觀安排在早上：從森林學堂的樹屋走到孔廟，觀察木構、彩繪與傳統屋頂，再於庭院理解儒學祭祀空間的層次。重要活動期間遵循現場動線。',
+    visit:'以建築欣賞和短距離文化散步為主，不宜當成大型遊樂場；院落與建築部分區域需要保持安靜。',
+    photo:['大成門前：利用階梯與建築中軸拍出入口層次','庭院側邊：捕捉朱紅柱列與檐下彩繪','屋脊近景：觀察傳統屋頂輪廓和裝飾'],
+    transport:'從奧爾森林學堂依園區指標步行前往，沿途有局部坡道；自駕可先參考公園路一帶的停車資訊。',
+    ticket:'一般公共參觀免費；活動與特殊區域依管理單位公告。',
+    stayArea:'適合住在桃園車站或桃園市區，隔日搭車前往虎頭山。',
+    mapQuery:'桃園孔廟 桃園市桃園區公園路42號',
+    faq:'孔廟與奧爾森林學堂能一起逛嗎？',faqAnswer:'兩處相距很近，適合安排 1～2 小時樹屋散步，再接續約半小時的孔廟文化參觀；遇施工繞行需額外預留時間。'
+  },
+  'hutoushan-accessible-trail': {
+    type:'森林親子步道・戶外休憩', manager:'桃園市政府風景區管理處（虎頭山管理站）',
+    about:'虎頭山公園全齡友善步道位於市府轄管的虎頭山風景特定區，相關公園設施與環境維護由桃園市政府風景區管理處體系負責。步道將樹屋、林蔭和休憩節點串在一起，讓不同年齡旅人能由森林學堂開始觀察都市近郊山林。',
+    landscape:'步道運用架高木棧道、護欄、緩坡與休息平台配合坡地地形；有些路段可近距離觀察樹冠與林下植物。全齡友善並不表示所有路段均可無障礙通行。',
+    experience:'把注意力放在樹木分層、季節變色、鳥鳴與沿線步道結構。與兒童同行時，可在第一個適合休息的節點折返，不必追求走完整條路。',
+    visit:'工程可能影響局部連通性；遵守圍籬、勿攀爬護欄。雨後木面和落葉易濕滑。',
+    photo:['林蔭步道轉彎處：以步道曲線引導視線','樹屋平台附近：拍出高架結構與樹冠的關係','林下休息區：利用葉隙光呈現森林層次'],
+    transport:'由奧爾森林學堂直接依全齡友善步道指標進入，遇工程封閉請折返；公車可參考虎頭山公園周邊站點。',
+    ticket:'公共戶外步道免費通行；工程期間部分區域可能封閉。',
+    stayArea:'若以親子戶外活動為主，可選桃園市區住宿，上午前往避開午後暑熱。',
+    mapQuery:'虎頭山公園全齡友善步道 桃園',
+    faq:'全齡友善步道適合嬰兒車嗎？',faqAnswer:'部分主要路線設有較平順的鋪面，但支線、階梯和施工改道不一定適用，建議使用輕便推車並依現場可通行路段調整。'
+  },
+  'taoyuan-martyrs-shrine': {
+    type:'市定古蹟・近代建築文化園區', manager:'桃園市政府民政局（孔廟忠烈祠管理中心），古蹟保存另涉及文化資產主管單位',
+    about:'桃園忠烈祠暨神社文化園區由桃園市政府民政局所屬管理體系推動場域管理與文化活動，古蹟維護則涉及文化資產專業管理。建築最初於 1938 年作為桃園神社落成，戰後改為忠烈祠；保存的參道、拜殿、本殿等構成桃園重要的近代歷史見證。',
+    landscape:'主體採檜木、杉木等木構材料，順應山坡依序配置鳥居、參道、手水舍、拜殿與本殿。除外觀，木柱接合、屋簷和石燈籠也呈現工法細節。',
+    experience:'從參道入口慢慢向上，先理解建築群的軸線，再觀察手水舍、拜殿及本殿之間的層級。最後回看入口與山林，理解神社建築的地形配置。',
+    visit:'這是古蹟及紀念空間，拍照與參觀應尊重現場儀式、活動及封閉區域；部分館舍可能另有營運時間。',
+    photo:['鳥居與參道：以軸線呈現層層遞進的建築布局','手水舍與石燈籠：觀察石、木材質對比','拜殿側面：捕捉屋簷曲線與木構細節'],
+    transport:'可從奧爾森林學堂依開放的林間步道往忠烈祠方向步行；自駕導航可直接輸入成功路三段200號。',
+    ticket:'一般園區參觀以場館公告為準；個別活動、展覽可能有不同規定。',
+    stayArea:'可住桃園市區，將此處與孔廟、虎頭山公園安排同日文化行程。',
+    mapQuery:'桃園忠烈祠暨神社文化園區 成功路三段200號',
+    faq:'為什麼忠烈祠看起來像日本神社？',faqAnswer:'這座建築原為 1938 年興建的桃園神社，戰後轉作忠烈祠用途，因而同時保留神社配置與後續歷史變遷的痕跡。'
+  },
+  'hutoushan-park': {
+    type:'都會森林公園・自然休閒', manager:'桃園市政府風景區管理處（虎頭山管理站）',
+    about:'虎頭山公園是桃園市政府風景區管理處轄管的都市近郊森林遊憩空間，園內設有奧爾森林學堂、步道、休息廣場與季節植物景觀。它串聯桃園市區日常運動、家庭休憩及自然教育，也是認識虎頭山丘陵地景的重要入口。',
+    landscape:'公園沿坡地布置林蔭步道、涼亭、廣場與觀景位置，場景由開闊休息空間轉向密集樹蔭；沿途可以比較不同坡度、植物和人造設施。',
+    experience:'以森林學堂為起點，先看樹屋與主步道，再視體力前往梅園與其他開放園路。停留時間可由一小時延伸到半日，不必一次走遍所有支線。',
+    visit:'園區廣大，請在岔路確認標示；午後雷陣雨、濕滑坡面和施工路段都應列入行程考量。',
+    photo:['森林入口：展現公園由市區轉入林地的氛圍','步道與涼亭：拍攝樹影、木造設施與坡地','開闊觀景點：在安全平台取城市與森林的遠景'],
+    transport:'可搭車至虎頭山周邊站點，或自行開車至合適的公園入口及停車區；不要將不同入口一律視為奧爾森林學堂入口。',
+    ticket:'公園一般戶外區域免費；活動或指定設施以公告為準。',
+    stayArea:'桃園車站周邊交通選擇多，適合安排虎頭山與市區其他景點的一日遊。',
+    mapQuery:'虎頭山公園 桃園市桃園區',
+    faq:'虎頭山公園與奧爾森林學堂是同一個地方嗎？',faqAnswer:'奧爾森林學堂是虎頭山公園內的主題樹屋區，虎頭山公園範圍更大，還有其他步道、廣場及自然景點。'
+  },
+  'jingguo-plum-garden': {
+    type:'季節花木景觀・公園休憩', manager:'桃園市政府風景區管理處（虎頭山公園轄管範圍）',
+    about:'經國梅園位於虎頭山公園內，經國梅園廣場列入桃園市政府風景區管理處轄管公共場地。梅園將季節植物欣賞與公園散步結合，可由奧爾森林學堂沿園區路線接續，適合安排輕量休憩與自然觀察。',
+    landscape:'園區以梅樹、坡地園路、階梯和休憩平台形成多層次景觀。梅花是否盛開取決於當年溫度與天候，不應只憑固定月份推斷現場花況。',
+    experience:'適合慢走看花木與園路空間，觀察不同季節的枝幹、葉形與花卉變化。也可選擇以梅園作為虎頭山較長散步路線中的休息點。',
+    visit:'花季與活動期間人潮可能增加；請勿攀折花木、踩入植栽區或占用通行動線。',
+    photo:['梅園入口與園路：以拱門、坡道呈現空間深度','季節花木：由枝條與背景樹蔭構成近景','高低差轉折處：俯拍步道與廣場的層次'],
+    transport:'從奧爾森林學堂依虎頭山公園內經國梅園指標步行；遇施工改道以當日標示為準。',
+    ticket:'公共戶外空間一般免費，特定活動以現場公告為準。',
+    stayArea:'若以梅園與虎頭山為主，可住桃園市區，上午造訪後回市區用餐。',
+    mapQuery:'經國梅園 虎頭山公園 桃園',
+    faq:'經國梅園全年都能看到梅花嗎？',faqAnswer:'不是。梅花是季節性花卉，開花狀況會隨氣溫、天候及植栽狀態變化；非花期仍可欣賞園路與林木。'
+  },
+};
+const detail = extra[place.slug];
+const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(detail.mapQuery);
 const faqs = [
- {q:place.name+'需要門票嗎？',a:'戶外公共區域通常無需購票；若遇展覽、活動或個別設施收費，請依現場公告。'},
+ {q:place.name+'需要門票嗎？',a:detail.ticket},
  {q:'建議停留多久？',a:place.stay+'，可依同行者體力與開放動線調整。'},
  {q:'如何從奧爾森林學堂前往？',a:'可按園內指標或 Google 地圖規劃步行；工程期間以現場公告及圍籬為準。'},
+ {q:detail.faq,a:detail.faqAnswer},
 ];
 ---
 <SubpageLayout title={place.name+'｜歷史特色、交通與虎頭山順遊攻略'} description={place.name+'完整旅遊資訊：歷史文化、建築及自然特色、建議路線、交通定位、停留時間與常見問題。從奧爾森林學堂順遊虎頭山。'} canonicalPath={'/nearby/'+place.slug} heroKicker="HUTOUSHAN NEARBY" heroTitle={place.name} heroSubtitle={place.tagline} breadcrumbLabel={place.name} faqs={faqs}>
@@ -31,11 +100,43 @@ const faqs = [
     <dl class="mt-5 grid gap-3 text-sm sm:grid-cols-2"><div><dt class="font-semibold">位置</dt><dd>{place.address}</dd></div><div><dt class="font-semibold">建議停留</dt><dd>{place.stay}</dd></div><div class="sm:col-span-2"><dt class="font-semibold">開放資訊</dt><dd>{place.hours}</dd></div></dl>
     <a class="mt-6 inline-block rounded-full bg-[#173227] px-5 py-3 font-semibold text-white" href={maps} target="_blank" rel="noopener noreferrer">以景點名稱開啟 Google 地圖 ↗</a>
   </section>
-  <section class="mt-12"><p class="text-sm font-semibold tracking-[.2em] text-[#8a6b2b]">MANAGEMENT</p><h2 class="mt-3 text-2xl font-semibold text-[#173227]">管理與維護</h2><p class="mt-4 leading-8 text-[#52645a]">本景點位於桃園市公共觀光與休憩空間範圍，維護、活動與施工公告請以桃園市政府及所屬場館管理單位發布的資訊為準。本站提供行程整理與延伸閱讀。</p></section>
-  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">歷史與背景</h2><p class="mt-4 leading-8 text-[#52645a]">{place.history}</p></section>
-  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">建築、地景與觀察重點</h2><p class="mt-4 leading-8 text-[#52645a]">{place.architecture}</p><p class="mt-4 leading-8 text-[#52645a]">{place.focus}</p></section>
-  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">步行路線建議</h2><ol class="mt-5 grid gap-3">{place.route.map((step,i)=><li class="flex gap-4 rounded-2xl border border-[#ded7c8] bg-white p-4"><span class="font-bold text-[#82683a]">{i+1}.</span><span>{step}</span></li>)}</ol></section>
-  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">交通、拍照與遊覽提醒</h2><p class="mt-4 leading-8 text-[#52645a]">可由奧爾森林學堂出發，步行串聯周邊景點；自駕先查詢虎頭山周邊可用停車空間，公車班次以當日即時資料為準。</p><p class="mt-3 leading-8 text-[#52645a]">拍攝可優先選擇入口、步道轉折與有代表性的空間軸線，避免阻礙其他遊客。{place.tips}</p><p class="mt-3"><a class="text-[#356246] underline underline-offset-4" href="/parking-transport">查看停車與交通攻略</a></p></section>
+  <section class="mt-12 rounded-[1.5rem] border border-[#ded7c8] bg-[#fffdf7] p-7">
+    <p class="text-sm font-semibold tracking-[.2em] text-[#8a6b2b]">ABOUT & MANAGEMENT</p>
+    <h2 class="mt-3 text-2xl font-semibold text-[#173227]">關於{place.name}</h2>
+    <p class="mt-4 leading-8 text-[#52645a]">{detail.about}</p>
+    <p class="mt-4 text-sm font-semibold text-[#36503f]">管理主體：{detail.manager}</p>
+  </section>
+  <section class="mt-12">
+    <p class="text-sm font-semibold tracking-[.2em] text-[#8a6b2b]">BASIC INFORMATION</p>
+    <h2 class="mt-3 text-2xl font-semibold text-[#173227]">景點基本資訊</h2>
+    <dl class="mt-5 divide-y divide-[#ded7c8] rounded-2xl border border-[#ded7c8] bg-white px-6 text-sm">
+      <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-[#173227]">景點名稱</dt><dd>{place.name}</dd></div>
+      <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-[#173227]">景點類型</dt><dd>{detail.type}</dd></div>
+      <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-[#173227]">詳細位置</dt><dd>{place.address}</dd></div>
+      <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-[#173227]">建議停留</dt><dd>{place.stay}</dd></div>
+      <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-[#173227]">開放資訊</dt><dd>{place.hours}</dd></div>
+      <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-[#173227]">入園費用</dt><dd>{detail.ticket}</dd></div>
+      <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-[#173227]">管理單位</dt><dd>{detail.manager}</dd></div>
+    </dl>
+  </section>
+  <section class="mt-12">
+    <p class="text-sm font-semibold tracking-[.2em] text-[#8a6b2b]">DISCOVER THE PLACE</p>
+    <h2 class="mt-3 text-2xl font-semibold text-[#173227]">發現{place.name}的魅力</h2>
+    <div class="mt-6 grid gap-4">
+      {[
+        ['01 歷史與背景',place.history],
+        ['02 建築與地景特色',place.architecture+' '+detail.landscape],
+        ['03 文化及自然觀察',place.focus],
+        ['04 核心遊覽體驗',detail.experience],
+      ].map(([title,body])=><article class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-6"><h3 class="text-xl font-semibold text-[#173227]">{title}</h3><p class="mt-3 leading-8 text-[#52645a]">{body}</p></article>)}
+    </div>
+  </section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">推薦步行路線</h2><p class="mt-4 leading-8 text-[#52645a]">以下是從奧爾森林學堂接續的順遊方向，實際路線依開放出入口及施工圍籬調整。</p><ol class="mt-5 grid gap-3">{place.route.map((step,i)=><li class="flex gap-4 rounded-2xl border border-[#ded7c8] bg-white p-4"><span class="font-bold text-[#82683a]">{i+1}.</span><span>{step}</span></li>)}</ol></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">遊覽建議與注意事項</h2><p class="mt-4 leading-8 text-[#52645a]">{detail.visit}</p><p class="mt-3 leading-8 text-[#52645a]">{place.tips}</p></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">推薦拍照機位</h2><ol class="mt-5 space-y-3">{detail.photo.map((spot,i)=><li class="rounded-2xl border border-[#ded7c8] bg-white p-5 leading-7 text-[#52645a]"><strong class="mr-2 text-[#82683a]">{i+1}.</strong>{spot}</li>)}</ol><p class="mt-4 text-sm leading-7 text-[#617168]">建議在晴天上午或午後柔和光線拍攝，不跨越圍籬、不攀爬構造物。</p></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">交通與住宿建議</h2><p class="mt-4 leading-8 text-[#52645a]">{detail.transport}</p><p class="mt-3 leading-8 text-[#52645a]">{detail.stayArea}</p><a class="mt-4 inline-block font-semibold text-[#356246] underline underline-offset-4" href="/parking-transport">查看虎頭山停車與大眾運輸攻略</a></section>
+  <section class="mt-12 rounded-[1.5rem] bg-[#f2f6ed] p-6"><h2 class="text-2xl font-semibold text-[#173227]">交通指南與 Google 地圖</h2><p class="mt-4 leading-8 text-[#52645a]">地址／位置：{place.address}</p><p class="mt-2 leading-8 text-[#52645a]">使用「{detail.mapQuery}」單獨搜尋此景點，不會統一導向奧爾森林學堂主入口。</p><a href={maps} target="_blank" rel="noopener noreferrer" class="mt-4 inline-block rounded-full bg-[#173227] px-5 py-3 font-semibold text-white">開啟{place.name}專屬導航 ↗</a></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">旅客評價與遊覽回饋</h2><p class="mt-4 leading-8 text-[#52645a]">出發前可透過{place.name}的 Google 地圖名稱頁查看旅客分享的體驗、照片與近期資訊，並留意留言日期及施工期間的動線變動。</p><a class="mt-3 inline-block font-semibold text-[#36503f] underline underline-offset-4" href={maps} target="_blank" rel="noopener noreferrer">查看最新地圖評價 ↗</a></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">常見問題</h2><div class="mt-5 space-y-3">{faqs.map(item=><details class="rounded-xl border border-[#ded7c8] p-4"><summary class="cursor-pointer font-semibold">{item.q}</summary><p class="mt-3 leading-7 text-[#52645a]">{item.a}</p></details>)}</div></section>
   <section class="mt-12 border-t border-[#ded7c8] pt-8 text-sm text-[#52645a]"><h2 class="font-semibold text-[#173227]">資料來源</h2><p class="mt-3">參考桃園市政府公開景點及管理資料；施工、開放與交通可能異動，請出發前核對。</p><a class="mt-2 inline-block underline underline-offset-4" href={place.source} target="_blank" rel="noopener noreferrer">官方資料與延伸查詢 ↗</a><p class="mt-4"><a class="underline underline-offset-4" href="/nearby">返回全部周邊景點</a></p></section>
 </SubpageLayout>
