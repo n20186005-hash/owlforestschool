@@ -1,4 +1,4 @@
-const CACHE = 'owlforest-v1';
+const CACHE = 'owlforest-v2';
 const CORE = [
   '/',
   '/favicon.svg',
@@ -44,6 +44,10 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() => cached);
+      // HTML must be network-first so returning visitors see updated guides and footers.
+      if (request.mode === 'navigate' || request.destination === 'document') {
+        return (await network) || cached || Response.error();
+      }
       return cached || network;
     })()
   );

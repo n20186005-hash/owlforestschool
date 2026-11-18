@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { site } from '@/data/site';
 
-const pages = ['/', '/about', '/privacy', '/terms-of-service', '/cookie-settings', '/sources', '/opening-status', '/parking-transport', '/family-guide', '/nearby', '/nearby/taoyuan-confucius-temple', '/nearby/hutoushan-accessible-trail', '/nearby/taoyuan-martyrs-shrine', '/nearby/hutoushan-park', '/nearby/jingguo-plum-garden', '/nearby/hutoushan-environmental-park', '/nearby/minglun-sansheng-temple', '/nearby/fengxiang-grove'];
+const pages = ['/', '/about', '/privacy', '/terms-of-service', '/cookie-settings', '/sources', '/opening-status', '/parking-transport', '/family-guide', '/nearby', '/nearby/taoyuan-confucius-temple', '/nearby/hutoushan-accessible-trail', '/nearby/taoyuan-martyrs-shrine', '/nearby/hutoushan-park', '/nearby/jingguo-plum-garden', '/nearby/hutoushan-environmental-park', '/nearby/minglun-sansheng-temple', '/nearby/fengxiang-grove', '/nearby/land-god-museum', '/nearby/taolin-railway', '/nearby/dayou-terrace-park', '/nearby/military-village-story-house'];
 
 export const GET: APIRoute = () => {
   const body = `<?xml version="1.0" encoding="UTF-8"?>

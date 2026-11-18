@@ -9,9 +9,13 @@ const items = [
  {slug:'hutoushan-environmental-park',name:'虎頭山環保公園',kind:'觀景與環境教育',detail:'從舊掩埋場轉型為星星公園，欣賞桃園城市天際線。'},
  {slug:'minglun-sansheng-temple',name:'桃園明倫三聖宮',kind:'傳統寺廟文化',detail:'認識關聖帝君信仰、石刻、彩繪與虎頭山地方文化。'},
  {slug:'fengxiang-grove',name:'虎頭山楓香林',kind:'季節植物與野餐',detail:'走進梯田式楓香野餐區，觀察林蔭與秋季葉色。'},
+ {slug:'land-god-museum',name:'桃園市土地公文化館',kind:'地方信仰與文化',detail:'從土地公信仰、祭祀工藝及桃園拓墾記憶認識在地文化。'},
+ {slug:'taolin-railway',name:'桃林鐵路自行車道',kind:'鐵道歷史與綠廊',detail:'昔日工業運輸路線，轉身為串聯城市的慢行綠色廊道。'},
+ {slug:'dayou-terrace-park',name:'大有梯田生態公園',kind:'生態與親子遊戲',detail:'在梯田、水景與森林共融設施之間感受農村地景的轉化。'},
+ {slug:'military-village-story-house',name:'龜山眷村故事館',kind:'歷史建築與生活史',detail:'保存陸光三村自治會建築，透過家中老物件閱讀眷村故事。'},
 ];
 ---
-<SubpageLayout title="奧爾森林學堂周邊景點｜桃園孔廟、虎頭山步道與神社文化園區" description="從奧爾森林學堂出發，探索桃園孔廟、全齡友善步道、忠烈祠暨神社文化園區、虎頭山公園與經國梅園；各景點附獨立歷史、特色、路線和導航。" canonicalPath="/nearby" heroTitle="探索虎頭山周邊景點" heroSubtitle="把森林樹屋串成半日遊：親子步道、文化古蹟、梅園與自然觀察。" breadcrumbLabel="周邊景點">
+<SubpageLayout title="奧爾森林學堂周邊12處景點｜虎頭山、桃園文化與親子遊" description="從奧爾森林學堂出發探索 12 處景點：桃園孔廟、神社文化園區、土地公文化館、桃林鐵路、大有梯田與眷村故事館；附歷史、實景照片與專屬導航。" canonicalPath="/nearby" heroTitle="探索虎頭山周邊12處景點" heroSubtitle="把森林樹屋串成半日遊：親子步道、文化古蹟、鐵道、梯田與城市生活史。" breadcrumbLabel="周邊景點">
   <section><h2 class="text-2xl font-semibold text-[#173227]">從奧爾森林學堂出發</h2><p class="mt-4 leading-8 text-[#52645a]">虎頭山不只有樹屋：附近的孔廟、全齡友善步道與忠烈祠文化園區，適合依步行體力自由組合。施工期間請依圍籬與管理單位公告調整。</p></section>
   <section class="mt-10 grid gap-5 sm:grid-cols-2">
     {items.map(item=><a href={'/nearby/'+item.slug} class="group overflow-hidden rounded-[1.5rem] border border-[#ded7c8] bg-white transition hover:border-[#8b9e7c] hover:shadow-lg"><img src={`/images/nearby/${item.slug}.jpg`} alt={`${item.name}實景`} width="1024" height="683" loading="lazy" decoding="async" class="aspect-[3/2] w-full object-cover" /><div class="p-6"><span class="text-xs font-semibold tracking-[.2em] text-[#8a6b2b]">{item.kind}</span><h2 class="mt-3 text-xl font-semibold text-[#173227]">{item.name}</h2><p class="mt-3 leading-7 text-[#52645a]">{item.detail}</p><span class="mt-5 inline-block font-semibold text-[#36503f]">閱讀景點指南 ↗</span></div></a>)}
