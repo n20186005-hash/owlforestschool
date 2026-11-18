@@ -156,11 +156,11 @@ export const site = {
   },
   rating: {
     score: 4.4,
-    count: 8025,
+    count: 8047,
     category: '城市公園',
-    syncedAt: '2026 年 10 月',
+    syncedAt: '2026 年 11 月',
   },
-  reviewedAt: '2026 年 10 月',
+  reviewedAt: '2026 年 11 月',
 };
 
 export const highlights = [

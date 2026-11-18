@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SiteHeader from '@/components/SiteHeader.astro';
+import SiteFooter from '@/components/SiteFooter.astro';
+---
+<BaseLayout title="Cookie 設置｜奧爾森林學堂" description="查看並管理奧爾森林學堂旅遊指南的網站分析 Cookie 選擇。" canonicalPath="/cookie-settings">
+ <SiteHeader />
+ <main class="mx-auto min-h-[70vh] max-w-3xl px-5 pb-24 pt-32">
+  <p class="text-sm font-semibold tracking-[.22em] text-[#8a6b2b]">COOKIE SETTINGS</p><h1 class="mt-4 text-4xl font-semibold text-[#173227]">Cookie 設置</h1>
+  <div class="mt-10 space-y-8 leading-8 text-[#586a60]">
+   <section><h2 class="text-xl font-semibold text-[#244437]">必要的網站功能</h2><p class="mt-2">網站需要基本的瀏覽器功能才能顯示頁面、導航和部分互動；這些功能不依賴廣告個人化 Cookie。</p></section>
+   <section><h2 class="text-xl font-semibold text-[#244437]">網站分析 Cookie</h2><p class="mt-2">本站使用 Google Analytics 4 了解整體網站使用情況。你可以選擇允許或拒絕分析 Cookie，並可隨時變更。</p>
+    <div class="mt-5 rounded-2xl border border-[#ded7c8] bg-white p-6">
+     <p id="cookie-current" aria-live="polite" class="text-sm text-[#36503f]">正在讀取目前偏好…</p>
+     <div class="mt-5 flex flex-wrap gap-3"><button type="button" id="cookie-allow" class="rounded-full bg-[#173227] px-5 py-3 font-semibold text-white">允許分析 Cookie</button><button type="button" id="cookie-deny" class="rounded-full border border-[#173227] px-5 py-3 font-semibold text-[#173227]">拒絕分析 Cookie</button></div>
+    </div>
+   </section>
+   <section><h2 class="text-xl font-semibold text-[#244437]">外部服務</h2><p class="mt-2">如果你前往 Google 地圖或其他網站，該網站可能自行使用 Cookie；此處的選擇只控制本站的分析同意狀態。詳見<a href="/privacy" class="underline underline-offset-4">隱私政策</a>。</p></section>
+  </div>
+ </main><SiteFooter />
+ <script is:inline>
+  const preferenceKey = 'owlforest-analytics-consent';
+  const status = document.getElementById('cookie-current');
+  const readPreference = () => { try { return localStorage.getItem(preferenceKey); } catch { return null; } };
+  function showPreference(value) { if (status) status.textContent = value === 'granted' ? '目前選擇：允許分析 Cookie' : value === 'denied' ? '目前選擇：拒絕分析 Cookie' : '目前尚未選擇（預設拒絕分析 Cookie）'; }
+  function savePreference(value) {
+    try { localStorage.setItem(preferenceKey, value); } catch {}
+    if (typeof window.gtag === 'function') window.gtag('consent','update',{analytics_storage:value});
+    showPreference(value);
+  }
+  showPreference(readPreference());
+  document.getElementById('cookie-allow')?.addEventListener('click',()=>savePreference('granted'));
+  document.getElementById('cookie-deny')?.addEventListener('click',()=>savePreference('denied'));
+ </script>
+</BaseLayout>

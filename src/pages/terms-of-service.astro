@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SiteHeader from '@/components/SiteHeader.astro';
+import SiteFooter from '@/components/SiteFooter.astro';
+---
+<BaseLayout title="服務條款｜奧爾森林學堂" description="奧爾森林學堂旅遊指南的網站使用、旅遊資訊及外部連結服務條款。" canonicalPath="/terms-of-service">
+ <SiteHeader />
+ <main class="mx-auto min-h-[70vh] max-w-3xl px-5 pb-24 pt-32">
+  <p class="text-sm font-semibold tracking-[.22em] text-[#8a6b2b]">TERMS OF SERVICE</p><h1 class="mt-4 text-4xl font-semibold text-[#173227]">服務條款</h1>
+  <div class="mt-10 space-y-8 leading-8 text-[#586a60]">
+   <section><h2 class="text-xl font-semibold text-[#244437]">網站服務範圍</h2><p class="mt-2">本站提供奧爾森林學堂與虎頭山周邊景點的免費旅遊資訊，包括歷史、交通、行程與地圖參考，並不提供現場設施管理、訂票或住宿預訂服務。</p></section>
+   <section><h2 class="text-xl font-semibold text-[#244437]">資訊使用</h2><p class="mt-2">景點開放時間、施工、交通與費用會隨管理單位公告改變。規劃行程時請核對現場標示與官方最新資訊；實際通行與安全以現場規定為準。</p></section>
+   <section><h2 class="text-xl font-semibold text-[#244437]">外部連結</h2><p class="mt-2">本站可連至 Google 地圖與政府公開網站。離開本站後，第三方服務的內容、可用性及隱私做法由各網站自行管理。</p></section>
+   <section><h2 class="text-xl font-semibold text-[#244437]">圖文使用</h2><p class="mt-2">網站文字、設計及影像可能分屬不同權利人；使用第三方素材時請依其來源頁面說明辦理。資料來源詳見<a href="/sources" class="underline underline-offset-4">資料來源頁</a>。</p></section>
+   <section><h2 class="text-xl font-semibold text-[#244437]">網站性質與更新</h2><p class="mt-2">本站是獨立旅遊資訊項目，與任何政府機關或官方組織沒有隸屬關係。本條款更新日期為 2026 年 11 月 18 日。</p></section>
+  </div>
+ </main><SiteFooter />
+</BaseLayout>

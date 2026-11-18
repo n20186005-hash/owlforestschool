@@ -53,10 +53,15 @@ const imageUrl = new URL(image, site.url).toString();
     <title>{title}</title>
 
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      let analyticsConsent = 'denied';
+      try { if (localStorage.getItem('owlforest-analytics-consent') === 'granted') analyticsConsent = 'granted'; } catch {}
+      gtag('consent','default',{analytics_storage:analyticsConsent,ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+    <script is:inline>
       gtag('js', new Date());
       gtag('config', 'G-HXM22WWPKP');
     </script>
