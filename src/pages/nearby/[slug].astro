@@ -8,8 +8,11 @@ const places = [
   {slug:'hutoushan-park',name:'虎頭山公園',tagline:'桃園市區旁的森林、觀景與休憩地景',intro:'虎頭山公園連結樹屋、步道、經國梅園與多處休息空間，可由短程散步逐步延伸為半日自然遊。',history:'虎頭山是桃園市區重要的綠地，園區亦具有考古與自然環境教育意義。',architecture:'與其尋找單一地標，更值得觀察步道、涼亭、觀景平台與森林地形的連接方式。',focus:'觀察丘陵地形、不同樹種的林蔭以及城市與山林交界的視野。',address:'桃園市桃園區虎頭山公園一帶',hours:'公園戶外區域與個別設施開放狀態不同，以管理單位公告為準',stay:'約 60–120 分鐘',route:['奧爾森林學堂','園區林蔭步道','經國梅園周邊','依體力選擇觀景點','原路或其他開放出口離開'],tips:'坡度與岔路較多，帶兒童宜縮短路線，備水並留意返程。',source:'https://playfulpark-taoyuan.tycg.gov.tw/playgrounds/63'},
   {slug:'jingguo-plum-garden',name:'經國梅園',tagline:'虎頭山公園內的季節植物與靜態休憩空間',intro:'經國梅園是虎頭山公園散步路線中的一處園區節點，適合與樹屋、步道安排同一天行程。',history:'梅園屬虎頭山公園既有的休憩景點，園區廣場亦列入市府公共場地管理範圍。',architecture:'可觀察梅園廣場與周邊林蔭、園路及休息空間如何組成公園動線。',focus:'花期受氣候影響，非花季也可留意枝幹形態、光線與地形。',address:'桃園市桃園區虎頭山公園內',hours:'依虎頭山公園現場公告與施工狀況',stay:'約 20–40 分鐘',route:['奧爾森林學堂','依園區指標前往經國梅園','觀察梅樹與園路','循開放步道返回'],tips:'避免將花期寫成固定日期；先核對當季花況。',source:'https://playfulpark-taoyuan.tycg.gov.tw/playgrounds/63'},
 ];
-export function getStaticPaths() { return places.map((place) => ({ params: { slug: place.slug }, props: { place } })); }
-const {place} = Astro.props;
+export function getStaticPaths() {
+  return ['taoyuan-confucius-temple', 'hutoushan-accessible-trail', 'taoyuan-martyrs-shrine', 'hutoushan-park', 'jingguo-plum-garden'].map((slug) => ({ params: { slug } }));
+}
+const place = places.find((item) => item.slug === Astro.params.slug)!;
+const image = `/images/nearby/${place.slug}.jpg`;
 const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(place.name + ' 桃園市桃園區');
 const faqs = [
  {q:place.name+'需要門票嗎？',a:'戶外公共區域通常無需購票；若遇展覽、活動或個別設施收費，請依現場公告。'},
@@ -18,6 +21,10 @@ const faqs = [
 ];
 ---
 <SubpageLayout title={place.name+'｜歷史特色、交通與虎頭山順遊攻略'} description={place.name+'完整旅遊資訊：歷史文化、建築及自然特色、建議路線、交通定位、停留時間與常見問題。從奧爾森林學堂順遊虎頭山。'} canonicalPath={'/nearby/'+place.slug} heroKicker="HUTOUSHAN NEARBY" heroTitle={place.name} heroSubtitle={place.tagline} breadcrumbLabel={place.name} faqs={faqs}>
+  <figure class="mb-9 overflow-hidden rounded-[1.5rem] border border-[#ded7c8] bg-white shadow-[0_16px_40px_rgba(42,54,46,.08)]">
+    <img src={image} alt={`${place.name}現場實景`} width="1024" height="683" loading="eager" decoding="async" class="aspect-[3/2] w-full object-cover" />
+    <figcaption class="px-5 py-3 text-xs text-[#617168]">{place.name}實景影像 · 桃園市政府公開景點資料</figcaption>
+  </figure>
   <section class="rounded-[1.5rem] border border-[#d9dfd0] bg-[#f2f6ed] p-6">
     <p class="text-sm font-semibold tracking-[.18em] text-[#547458]">行前速覽</p>
     <p class="mt-3 leading-8 text-[#345142]">{place.intro}</p>
