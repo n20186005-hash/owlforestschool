@@ -1,0 +1,34 @@
+---
+import SubpageLayout from '@/layouts/SubpageLayout.astro';
+
+const places = [
+  {slug:'taoyuan-confucius-temple',name:'桃園孔廟',tagline:'虎頭山半山腰的儒學文化空間',intro:'孔廟藉由台地高差與層層階梯營造儀式性的空間轉折，適合從奧爾森林學堂步行接續。',history:'桃園孔廟為推廣儒學與傳統禮樂的重要場所，設於虎頭山半山腰，與周邊林地構成文化散步路線。',architecture:'留意大成門基座的抬高設計、階梯及院落軸線；空間高差帶出由入口逐漸進入核心殿宇的節奏。',focus:'從大成門前觀察建築層次，也可比較林地與廟宇庭院的光影變化。',address:'330 桃園市桃園區公園路42號（虎頭山園區一帶）',hours:'官方環教資料列 08:00–17:00；特殊活動與休館以公告為準',stay:'約 20–40 分鐘',route:['奧爾森林學堂入口','沿園區指標往桃園孔廟','大成門與庭院','原路返回或續往忠烈祠'],tips:'院落階梯較多，推車需依現場無障礙動線調整。',source:'https://www.scenic.tycg.gov.tw/News_Content.aspx?n=9500&s=997280'},
+  {slug:'hutoushan-accessible-trail',name:'虎頭山公園全齡友善步道',tagline:'樹屋旁的短距離森林步行路線',intro:'這段步道緊鄰奧爾森林學堂，可將樹屋觀察延伸為森林散步；施工期間以現場開放路線為準。',history:'虎頭山長期是桃園市區親近山林的公共休憩地點，全齡友善路線讓不同年齡的遊客有機會走進林間。',architecture:'觀察步道鋪面、緩坡與休息節點如何銜接既有林木及樹屋平台。',focus:'從樹冠陰影、地表落葉與步道轉折觀察森林微環境。',address:'330 桃園市桃園區公園路42號周邊',hours:'戶外步道依現場告示與工程圍籬開放',stay:'約 20–50 分鐘',route:['奧爾森林學堂','全齡友善步道入口','選擇可通行的林蔭路段','折返或接續孔廟'],tips:'「全齡友善」不代表所有支線皆無障礙；雨後注意濕滑。',source:'https://travel.tycg.gov.tw/zh-tw/travel/nearby-attractions/1269'},
+  {slug:'taoyuan-martyrs-shrine',name:'桃園忠烈祠暨神社文化園區',tagline:'1938 年建築群與虎頭山文化散步',intro:'由日治時期桃園神社轉型為忠烈祠，保留參道、手水舍、拜殿與本殿等空間，是認識桃園近代歷史的重要文化資產。',history:'建築於 1938 年落成，1994 年指定為市定古蹟，見證日治至戰後的場域轉變。',architecture:'留意鳥居、參道、木構樑柱及檜木材質，建築融合唐風、日式與臺灣近代元素。',focus:'站在參道軸線取景，再走近觀察木構接合、屋簷與手水舍。',address:'330 桃園市桃園區成功路三段200號',hours:'忠烈祠參觀時段依官方公告；一般資料列 09:00–17:00',stay:'約 40–70 分鐘',route:['奧爾森林學堂','往忠烈祠方向的開放步道','鳥居與參道','拜殿及本殿外觀','依指標返回'],tips:'古蹟區請遵守場館禮儀與攝影限制，不觸摸木造構件。',source:'https://travel.tycg.gov.tw/en/Travel/Attraction/1034'},
+  {slug:'hutoushan-park',name:'虎頭山公園',tagline:'桃園市區旁的森林、觀景與休憩地景',intro:'虎頭山公園連結樹屋、步道、經國梅園與多處休息空間，可由短程散步逐步延伸為半日自然遊。',history:'虎頭山是桃園市區重要的綠地，園區亦具有考古與自然環境教育意義。',architecture:'與其尋找單一地標，更值得觀察步道、涼亭、觀景平台與森林地形的連接方式。',focus:'觀察丘陵地形、不同樹種的林蔭以及城市與山林交界的視野。',address:'桃園市桃園區虎頭山公園一帶',hours:'公園戶外區域與個別設施開放狀態不同，以管理單位公告為準',stay:'約 60–120 分鐘',route:['奧爾森林學堂','園區林蔭步道','經國梅園周邊','依體力選擇觀景點','原路或其他開放出口離開'],tips:'坡度與岔路較多，帶兒童宜縮短路線，備水並留意返程。',source:'https://playfulpark-taoyuan.tycg.gov.tw/playgrounds/63'},
+  {slug:'jingguo-plum-garden',name:'經國梅園',tagline:'虎頭山公園內的季節植物與靜態休憩空間',intro:'經國梅園是虎頭山公園散步路線中的一處園區節點，適合與樹屋、步道安排同一天行程。',history:'梅園屬虎頭山公園既有的休憩景點，園區廣場亦列入市府公共場地管理範圍。',architecture:'可觀察梅園廣場與周邊林蔭、園路及休息空間如何組成公園動線。',focus:'花期受氣候影響，非花季也可留意枝幹形態、光線與地形。',address:'桃園市桃園區虎頭山公園內',hours:'依虎頭山公園現場公告與施工狀況',stay:'約 20–40 分鐘',route:['奧爾森林學堂','依園區指標前往經國梅園','觀察梅樹與園路','循開放步道返回'],tips:'避免將花期寫成固定日期；先核對當季花況。',source:'https://playfulpark-taoyuan.tycg.gov.tw/playgrounds/63'},
+];
+export function getStaticPaths() { return places.map((place) => ({ params: { slug: place.slug }, props: { place } })); }
+const {place} = Astro.props;
+const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(place.name + ' 桃園市桃園區');
+const faqs = [
+ {q:place.name+'需要門票嗎？',a:'戶外公共區域通常無需購票；若遇展覽、活動或個別設施收費，請依現場公告。'},
+ {q:'建議停留多久？',a:place.stay+'，可依同行者體力與開放動線調整。'},
+ {q:'如何從奧爾森林學堂前往？',a:'可按園內指標或 Google 地圖規劃步行；工程期間以現場公告及圍籬為準。'},
+];
+---
+<SubpageLayout title={place.name+'｜歷史特色、交通與虎頭山順遊攻略'} description={place.name+'完整旅遊資訊：歷史文化、建築及自然特色、建議路線、交通定位、停留時間與常見問題。從奧爾森林學堂順遊虎頭山。'} canonicalPath={'/nearby/'+place.slug} heroKicker="HUTOUSHAN NEARBY" heroTitle={place.name} heroSubtitle={place.tagline} breadcrumbLabel={place.name} faqs={faqs}>
+  <section class="rounded-[1.5rem] border border-[#d9dfd0] bg-[#f2f6ed] p-6">
+    <p class="text-sm font-semibold tracking-[.18em] text-[#547458]">行前速覽</p>
+    <p class="mt-3 leading-8 text-[#345142]">{place.intro}</p>
+    <dl class="mt-5 grid gap-3 text-sm sm:grid-cols-2"><div><dt class="font-semibold">位置</dt><dd>{place.address}</dd></div><div><dt class="font-semibold">建議停留</dt><dd>{place.stay}</dd></div><div class="sm:col-span-2"><dt class="font-semibold">開放資訊</dt><dd>{place.hours}</dd></div></dl>
+    <a class="mt-6 inline-block rounded-full bg-[#173227] px-5 py-3 font-semibold text-white" href={maps} target="_blank" rel="noopener noreferrer">以景點名稱開啟 Google 地圖 ↗</a>
+  </section>
+  <section class="mt-12"><p class="text-sm font-semibold tracking-[.2em] text-[#8a6b2b]">MANAGEMENT</p><h2 class="mt-3 text-2xl font-semibold text-[#173227]">管理與維護</h2><p class="mt-4 leading-8 text-[#52645a]">本景點位於桃園市公共觀光與休憩空間範圍，維護、活動與施工公告請以桃園市政府及所屬場館管理單位發布的資訊為準。本站提供行程整理與延伸閱讀。</p></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">歷史與背景</h2><p class="mt-4 leading-8 text-[#52645a]">{place.history}</p></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">建築、地景與觀察重點</h2><p class="mt-4 leading-8 text-[#52645a]">{place.architecture}</p><p class="mt-4 leading-8 text-[#52645a]">{place.focus}</p></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">步行路線建議</h2><ol class="mt-5 grid gap-3">{place.route.map((step,i)=><li class="flex gap-4 rounded-2xl border border-[#ded7c8] bg-white p-4"><span class="font-bold text-[#82683a]">{i+1}.</span><span>{step}</span></li>)}</ol></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">交通、拍照與遊覽提醒</h2><p class="mt-4 leading-8 text-[#52645a]">可由奧爾森林學堂出發，步行串聯周邊景點；自駕先查詢虎頭山周邊可用停車空間，公車班次以當日即時資料為準。</p><p class="mt-3 leading-8 text-[#52645a]">拍攝可優先選擇入口、步道轉折與有代表性的空間軸線，避免阻礙其他遊客。{place.tips}</p><p class="mt-3"><a class="text-[#356246] underline underline-offset-4" href="/parking-transport">查看停車與交通攻略</a></p></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">常見問題</h2><div class="mt-5 space-y-3">{faqs.map(item=><details class="rounded-xl border border-[#ded7c8] p-4"><summary class="cursor-pointer font-semibold">{item.q}</summary><p class="mt-3 leading-7 text-[#52645a]">{item.a}</p></details>)}</div></section>
+  <section class="mt-12 border-t border-[#ded7c8] pt-8 text-sm text-[#52645a]"><h2 class="font-semibold text-[#173227]">資料來源</h2><p class="mt-3">參考桃園市政府公開景點及管理資料；施工、開放與交通可能異動，請出發前核對。</p><a class="mt-2 inline-block underline underline-offset-4" href={place.source} target="_blank" rel="noopener noreferrer">官方資料與延伸查詢 ↗</a><p class="mt-4"><a class="underline underline-offset-4" href="/nearby">返回全部周邊景點</a></p></section>
+</SubpageLayout>
