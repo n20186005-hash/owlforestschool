@@ -18,7 +18,7 @@ interface Props {
   heroSubtitle?: string;
   breadcrumbLabel: string;
   faqs?: FaqItem[];
-  current?: 'opening-status' | 'parking-transport' | 'family-guide';
+  current?: 'opening-status' | 'parking-transport' | 'family-guide' | 'nearby';
 }
 
 const {
@@ -70,6 +70,7 @@ const related: { slug: string; label: string; desc: string }[] = [
   { slug: 'opening-status', label: '開放狀況與施工', desc: '2026 分區施工、設施開放與最新公告核對' },
   { slug: 'parking-transport', label: '停車與交通', desc: '停車場入口、Google 導航、公車與步行動線' },
   { slug: 'family-guide', label: '親子遊玩攻略', desc: '樹屋、遊具與幼兒友善路線的實用建議' },
+  { slug: 'nearby', label: '周邊景點', desc: '桃園孔廟、虎頭山步道與文化古蹟專頁' },
 ];
 ---
 
@@ -101,7 +102,7 @@ const related: { slug: string; label: string; desc: string }[] = [
     <section class="mx-auto max-w-7xl px-5 pb-24 lg:px-8">
       <p class="text-sm font-semibold tracking-[0.22em] text-[#8a6b2b]">RELATED GUIDES</p>
       <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[#173227]">延伸攻略</h2>
-      <div class="mt-8 grid gap-5 sm:grid-cols-3">
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {
           related
             .filter((item) => item.slug !== current)
