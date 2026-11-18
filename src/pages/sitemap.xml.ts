@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { site } from '@/data/site';
 
-const pages = ['/', '/about', '/privacy', '/opening-status', '/parking-transport', '/family-guide'];
+const pages = ['/', '/about', '/privacy', '/opening-status', '/parking-transport', '/family-guide', '/nearby', '/nearby/taoyuan-confucius-temple', '/nearby/hutoushan-accessible-trail', '/nearby/taoyuan-martyrs-shrine', '/nearby/hutoushan-park', '/nearby/jingguo-plum-garden'];
 
 export const GET: APIRoute = () => {
   const body = `<?xml version="1.0" encoding="UTF-8"?>
