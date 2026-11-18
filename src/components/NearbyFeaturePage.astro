@@ -22,22 +22,28 @@ const mapUrl = 'https://www.google.com/maps/search/?api=1&query='+encodeURICompo
     <div class="mt-5 flex flex-wrap gap-2 text-sm"><span class="rounded-full bg-white px-4 py-2">{p.duration}</span><span class="rounded-full bg-white px-4 py-2">{p.opening}</span></div>
     <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="mt-5 inline-block rounded-full bg-[#173227] px-5 py-3 font-semibold text-white">查看景點位置 ↗</a>
   </section>
-  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">遊覽建議與景點特色</h2><p class="mt-4 leading-8 text-[#52645a]">{p.visit}</p><ul class="mt-5 grid gap-3">{p.highlights.map(item=><li class="rounded-xl border border-[#ded7c8] bg-white p-4 leading-7 text-[#52645a]">{item}</li>)}</ul></section>
   <section class="mt-12 rounded-[1.5rem] border border-[#ded7c8] bg-[#fffdf7] p-7">
     <p class="text-xs font-semibold tracking-[.22em] text-[#8a6b2b]">ABOUT & MANAGEMENT</p>
     <h2 class="mt-3 text-2xl font-semibold text-[#173227]">關於{p.name}</h2>
     <p class="mt-4 leading-8 text-[#52645a]">{p.about}</p>
     <p class="mt-4 text-sm font-semibold text-[#36503f]">管理主體：{p.manager}</p>
   </section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">遊覽建議與景點特色</h2><p class="mt-4 leading-8 text-[#52645a]">{p.visit}</p><ul class="mt-5 grid gap-3">{p.highlights.map(item=><li class="rounded-xl border border-[#ded7c8] bg-white p-4 leading-7 text-[#52645a]">{item}</li>)}</ul></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">基本資訊</h2>
     <dl class="mt-5 divide-y divide-[#ded7c8] rounded-2xl border border-[#ded7c8] bg-white px-6 text-sm">
       {([['名稱',p.name],['類型',p.type],['所在位置',p.address],['建議停留',p.duration],['開放時間',p.opening],['門票價格',p.price],['管理單位',p.manager]] as [string,string][]).map(([label,value])=><div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-[#173227]">{label}</dt><dd class="leading-6 text-[#52645a]">{value}</dd></div>)}
     </dl>
   </section>
+  <section class="mt-12 grid gap-4 md:grid-cols-3" aria-label="開放、票價和交通速覽">
+    <article class="rounded-2xl border border-[#ded7c8] bg-white p-6"><h2 class="text-lg font-semibold text-[#173227]">開放時間</h2><p class="mt-3 leading-7 text-[#52645a]">{p.opening}</p></article>
+    <article class="rounded-2xl border border-[#ded7c8] bg-white p-6"><h2 class="text-lg font-semibold text-[#173227]">門票價格</h2><p class="mt-3 leading-7 text-[#52645a]">{p.price}</p></article>
+    <article class="rounded-2xl border border-[#ded7c8] bg-white p-6"><h2 class="text-lg font-semibold text-[#173227]">交通方式</h2><p class="mt-3 leading-7 text-[#52645a]">{p.transport}</p></article>
+  </section>
   <section class="mt-12"><p class="text-xs font-semibold tracking-[.22em] text-[#8a6b2b]">HISTORY & CHARACTER</p><h2 class="mt-3 text-2xl font-semibold text-[#173227]">發現景點魅力</h2>
     <div class="mt-5 grid gap-4">{([['歷史背景',p.history],['建築與地景特色',p.architecture],['人文與自然觀察',p.nature]] as [string,string][]).map(([title,body])=><article class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-6"><h3 class="text-xl font-semibold text-[#173227]">{title}</h3><p class="mt-3 leading-8 text-[#52645a]">{body}</p></article>)}</div>
   </section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">推薦步行路線</h2><ol class="mt-5 grid gap-3">{p.route.map((step,i)=><li class="flex gap-4 rounded-xl border border-[#ded7c8] bg-white p-4"><span class="font-semibold text-[#8a6b2b]">{i+1}.</span><span class="leading-7">{step}</span></li>)}</ol></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">遊覽須知</h2><p class="mt-4 leading-8 text-[#52645a]">{p.visit} 請依現場開放動線參觀，勿跨越施工圍籬；戶外坡地雨後可能濕滑，建議穿著適合步行的鞋子。</p></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">拍照機位</h2><div class="mt-5 grid gap-3">{p.photos.map((spot,i)=><p class="rounded-xl border border-[#ded7c8] bg-white p-5 leading-7 text-[#52645a]"><strong class="mr-2 text-[#8a6b2b]">{i+1}.</strong>{spot}</p>)}</div></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">交通方式與住宿建議</h2><p class="mt-4 leading-8 text-[#52645a]">{p.transport}</p><p class="mt-3 leading-8 text-[#52645a]">{p.accommodation}</p><a href="/parking-transport" class="mt-4 inline-block font-semibold text-[#36503f] underline underline-offset-4">查看虎頭山交通停車攻略</a></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">遊覽須知與常見問題</h2><div class="mt-5 space-y-3">{p.faqs.map(item=><details class="rounded-xl border border-[#ded7c8] p-5"><summary class="cursor-pointer font-semibold text-[#173227]">{item.q}</summary><p class="mt-3 leading-7 text-[#52645a]">{item.a}</p></details>)}</div></section>
