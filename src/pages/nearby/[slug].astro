@@ -96,6 +96,11 @@ const faqs = [
     <img src={image} alt={`${place.name}現場實景`} width="1024" height="683" loading="eager" decoding="async" class="aspect-[3/2] w-full object-cover" />
     <figcaption class="px-5 py-3 text-xs text-[#617168]">{place.name}實景影像 · 桃園市政府公開景點資料</figcaption>
   </figure>
+  <div class="mb-6 flex flex-wrap items-center gap-3 text-sm text-[#36503f]" aria-label="景點速覽">
+    <span class="rounded-full border border-[#ded7c8] bg-white px-4 py-2">建議停留：{place.stay}</span>
+    <span class="rounded-full border border-[#ded7c8] bg-white px-4 py-2">{detail.ticket}</span>
+    <a href={maps} target="_blank" rel="noopener noreferrer" class="rounded-full bg-[#173227] px-4 py-2 font-semibold text-white">{place.name}地圖定位 ↗</a>
+  </div>
   <section class="rounded-[1.5rem] border border-[#d9dfd0] bg-[#f2f6ed] p-6">
     <p class="text-sm font-semibold tracking-[.18em] text-[#547458]">行前速覽</p>
     <p class="mt-3 leading-8 text-[#345142]">{place.intro}</p>
@@ -145,5 +150,5 @@ const faqs = [
   <section class="mt-12 rounded-[1.5rem] bg-[#f2f6ed] p-6"><h2 class="text-2xl font-semibold text-[#173227]">交通指南與 Google 地圖</h2><p class="mt-4 leading-8 text-[#52645a]">地址／位置：{place.address}</p><p class="mt-2 leading-8 text-[#52645a]">使用「{detail.mapQuery}」單獨搜尋此景點，不會統一導向奧爾森林學堂主入口。</p><a href={maps} target="_blank" rel="noopener noreferrer" class="mt-4 inline-block rounded-full bg-[#173227] px-5 py-3 font-semibold text-white">開啟{place.name}專屬導航 ↗</a></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">旅客評價與遊覽回饋</h2><p class="mt-4 leading-8 text-[#52645a]">出發前可透過{place.name}的 Google 地圖名稱頁查看旅客分享的體驗、照片與近期資訊，並留意留言日期及施工期間的動線變動。</p><a class="mt-3 inline-block font-semibold text-[#36503f] underline underline-offset-4" href={maps} target="_blank" rel="noopener noreferrer">查看最新地圖評價 ↗</a></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">常見問題</h2><div class="mt-5 space-y-3">{faqs.map(item=><details class="rounded-xl border border-[#ded7c8] p-4"><summary class="cursor-pointer font-semibold">{item.q}</summary><p class="mt-3 leading-7 text-[#52645a]">{item.a}</p></details>)}</div></section>
-  <nav aria-label="景點延伸閱讀" class="mt-12 flex flex-wrap gap-5 border-t border-[#ded7c8] pt-6 text-sm text-[#36503f]"><a class="underline underline-offset-4" href="/sources">查看資料來源</a><a class="underline underline-offset-4" href="/nearby">返回全部周邊景點</a></nav>
+  <nav aria-label="景點延伸閱讀" class="mt-12 flex flex-wrap gap-5 border-t border-[#ded7c8] pt-6 text-sm text-[#36503f]"><a class="underline underline-offset-4" href={place.source} target="_blank" rel="noopener noreferrer">景點官方參考資料 ↗</a><a class="underline underline-offset-4" href="/sources">查看資料來源</a><a class="underline underline-offset-4" href="/nearby">返回全部周邊景點</a></nav>
 </SubpageLayout>

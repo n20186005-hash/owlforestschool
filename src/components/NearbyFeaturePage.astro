@@ -15,6 +15,11 @@ const mapUrl = 'https://www.google.com/maps/search/?api=1&query='+encodeURICompo
     <img src={p.image} alt={p.name+'現場實景'} width="1024" height="683" loading="eager" decoding="async" class="aspect-[3/2] w-full object-cover" />
     <figcaption class="px-5 py-3 text-xs text-[#617168]">{p.name} · 現場景觀</figcaption>
   </figure>
+  <div class="mt-5 flex flex-wrap items-center gap-3 text-sm text-[#36503f]" aria-label="景點速覽">
+    <span class="rounded-full border border-[#ded7c8] bg-white px-4 py-2">建議停留：{p.duration}</span>
+    <span class="rounded-full border border-[#ded7c8] bg-white px-4 py-2">{p.price}</span>
+    <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-[#173227] px-4 py-2 font-semibold text-white">{p.name}地圖定位 ↗</a>
+  </div>
   <section class="mt-8 rounded-[1.5rem] border border-[#d9dfd0] bg-[#f2f6ed] p-6">
     <p class="text-xs font-semibold tracking-[.22em] text-[#547458]">DISCOVER</p>
     <h2 class="mt-3 text-2xl font-semibold text-[#173227]">探索{p.name}</h2>
@@ -43,10 +48,10 @@ const mapUrl = 'https://www.google.com/maps/search/?api=1&query='+encodeURICompo
     <div class="mt-5 grid gap-4">{([['歷史背景',p.history],['建築與地景特色',p.architecture],['人文與自然觀察',p.nature]] as [string,string][]).map(([title,body])=><article class="rounded-[1.5rem] border border-[#ded7c8] bg-white p-6"><h3 class="text-xl font-semibold text-[#173227]">{title}</h3><p class="mt-3 leading-8 text-[#52645a]">{body}</p></article>)}</div>
   </section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">推薦步行路線</h2><ol class="mt-5 grid gap-3">{p.route.map((step,i)=><li class="flex gap-4 rounded-xl border border-[#ded7c8] bg-white p-4"><span class="font-semibold text-[#8a6b2b]">{i+1}.</span><span class="leading-7">{step}</span></li>)}</ol></section>
-  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">遊覽須知</h2><p class="mt-4 leading-8 text-[#52645a]">{p.visit} 請依現場開放動線參觀，勿跨越施工圍籬；戶外坡地雨後可能濕滑，建議穿著適合步行的鞋子。</p></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">遊覽須知</h2><p class="mt-4 leading-8 text-[#52645a]">請依{p.name}現場開放動線與主管單位公告參觀；戶外路面在雨後可能濕滑，留意階梯、坡度及同行者步行能力。若遇活動或施工圍籬，請沿指定路線折返。</p></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">拍照機位</h2><div class="mt-5 grid gap-3">{p.photos.map((spot,i)=><p class="rounded-xl border border-[#ded7c8] bg-white p-5 leading-7 text-[#52645a]"><strong class="mr-2 text-[#8a6b2b]">{i+1}.</strong>{spot}</p>)}</div></section>
   <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">交通方式與住宿建議</h2><p class="mt-4 leading-8 text-[#52645a]">{p.transport}</p><p class="mt-3 leading-8 text-[#52645a]">{p.accommodation}</p><a href="/parking-transport" class="mt-4 inline-block font-semibold text-[#36503f] underline underline-offset-4">查看虎頭山交通停車攻略</a></section>
-  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">遊覽須知與常見問題</h2><div class="mt-5 space-y-3">{p.faqs.map(item=><details class="rounded-xl border border-[#ded7c8] p-5"><summary class="cursor-pointer font-semibold text-[#173227]">{item.q}</summary><p class="mt-3 leading-7 text-[#52645a]">{item.a}</p></details>)}</div></section>
+  <section class="mt-12"><h2 class="text-2xl font-semibold text-[#173227]">常見問題</h2><div class="mt-5 space-y-3">{p.faqs.map(item=><details class="rounded-xl border border-[#ded7c8] p-5"><summary class="cursor-pointer font-semibold text-[#173227]">{item.q}</summary><p class="mt-3 leading-7 text-[#52645a]">{item.a}</p></details>)}</div></section>
   <section class="mt-12 rounded-[1.5rem] bg-[#f2f6ed] p-6"><h2 class="text-2xl font-semibold text-[#173227]">旅客評價與地圖導航</h2><p class="mt-4 leading-8 text-[#52645a]">位置：{p.address}。旅客可從景點專屬 Google Maps 搜尋頁閱讀近期體驗與照片，出發前也可核對營業及施工資訊。</p><a href={mapUrl} target="_blank" rel="noopener noreferrer" class="mt-5 inline-block rounded-full bg-[#173227] px-5 py-3 font-semibold text-white">前往{p.name} Google 地圖 ↗</a></section>
-  <nav aria-label="景點延伸閱讀" class="mt-12 flex flex-wrap gap-5 border-t border-[#ded7c8] pt-6 text-sm text-[#36503f]"><a href="/sources" class="underline underline-offset-4">查看資料來源</a><a href="/nearby" class="underline underline-offset-4">返回周邊景點總覽</a></nav>
+  <nav aria-label="景點延伸閱讀" class="mt-12 flex flex-wrap gap-5 border-t border-[#ded7c8] pt-6 text-sm text-[#36503f]"><a href={p.source} target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">景點官方參考資料 ↗</a><a href="/sources" class="underline underline-offset-4">查看資料來源</a><a href="/nearby" class="underline underline-offset-4">返回周邊景點總覽</a></nav>
 </SubpageLayout>
